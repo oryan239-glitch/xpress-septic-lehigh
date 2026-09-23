@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="truckGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0d9488" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="280" rx="220" ry="18" fill="#14b8a6" opacity="0.2"/>
+  <!-- Cab -->
+  <path d="M80 200 V120 H160 L200 70 H280 V200 Z" fill="url(#truckGlow)" stroke="#14b8a6" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Tank body -->
+  <rect x="280" y="90" width="280" height="110" rx="18" fill="url(#truckGlow)" stroke="#14b8a6" stroke-width="3"/>
+  <!-- Tank bands -->
+  <line x1="340" y1="90" x2="340" y2="200" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+  <line x1="420" y1="90" x2="420" y2="200" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+  <line x1="500" y1="90" x2="500" y2="200" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+  <!-- Window -->
+  <rect x="175" y="95" width="70" height="45" rx="6" fill="#0b1c3d" stroke="#5eead4" stroke-width="2" opacity="0.9"/>
+  <!-- Wheels -->
+  <circle cx="160" cy="210" r="32" fill="#0b1c3d" stroke="#14b8a6" stroke-width="4"/>
+  <circle cx="160" cy="210" r="12" fill="#14b8a6" opacity="0.6"/>
+  <circle cx="380" cy="210" r="32" fill="#0b1c3d" stroke="#14b8a6" stroke-width="4"/>
+  <circle cx="380" cy="210" r="12" fill="#14b8a6" opacity="0.6"/>
+  <circle cx="500" cy="210" r="32" fill="#0b1c3d" stroke="#14b8a6" stroke-width="4"/>
+  <circle cx="500" cy="210" r="12" fill="#14b8a6" opacity="0.6"/>
+  <!-- Accent stripe -->
+  <path d="M90 155 H270" stroke="#5eead4" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+</svg>
