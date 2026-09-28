@@ -970,3 +970,68 @@ a:hover {
   padding: 0.75rem 1rem;
   font-size: 0.9rem;
 }
+
+/* Tap-to-call */
+.contact-call {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0.25rem 0 1.25rem;
+  padding: 0.9rem 1.3rem;
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: var(--white);
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(11, 28, 61, 0.18);
+  transition: transform 0.15s;
+}
+
+.contact-call:hover {
+  transform: translateY(-1px);
+}
+
+.contact-call-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+}
+
+.contact-call-num {
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.footer-phone {
+  color: var(--teal-light);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mobile-call-bar {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .mobile-call-bar {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 0.95rem 1rem calc(0.95rem + env(safe-area-inset-bottom));
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 -6px 20px rgba(11, 28, 61, 0.25);
+  }
+
+  body {
+    padding-bottom: 4rem;
+  }
+}

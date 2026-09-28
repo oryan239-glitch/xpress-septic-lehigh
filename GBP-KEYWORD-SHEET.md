@@ -2,7 +2,7 @@
 ## Xpress Septic Tank Pumping — Lehigh Acres, FL
 
 Aligned with the Style B marketing site language (bold / same-day).  
-**Do not add a phone number to GBP until the business is ready to publish one consistently across web + maps.**
+**Phone: (239) 506-1163 (tel:+12395061163). Use the same number on the website, Google Business Profile, and citations.**
 
 ---
 
@@ -93,7 +93,7 @@ Request a pump-out or repair online. Include your address, city, and whether you
 |---|---|
 | H1: Lehigh Acres Septic Pumping When You Need It | Primary keywords + same-day tone |
 | Services: Pump-Out, Repairs, Emergency, Partnered Replacements | GBP services list |
-| No phone on website | Keep phone off GBP until ready to publish consistently |
+| Phone (239) 506-1163 on website | Same number on GBP and citations |
 | Form CTA: Request Service / Request a Pump-Out | GBP “Request quote” / website button |
 | Area: Lehigh Acres + nearby SWFL | Service area settings |
 
