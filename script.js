@@ -1,191 +1,136 @@
+/* Xpress Septic Tank Pumping — site script (no dependencies) */
 (function () {
   "use strict";
 
-  var header = document.querySelector(".site-header");
-  var toggle = document.querySelector(".nav-toggle");
-  var nav = document.querySelector("#primary-nav");
-  var form = document.querySelector("#service-form");
-  var success = document.querySelector("#form-success");
-  var formError = document.querySelector("#form-error");
-  var submitBtn = document.querySelector("#submit-btn");
   var FORM_ENDPOINT = "https://formsubmit.co/ajax/xpressseptictankpumping@gmail.com";
 
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-      nav.classList.toggle("is-open", !open);
-    });
-
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open menu");
-        nav.classList.remove("is-open");
-      });
-    });
+  /* ---------- Event tracking ----------
+     Any element with data-track="event_name" is reported on click.
+     Events go to window.dataLayer (Google Tag Manager) and gtag (GA4) when either is installed;
+     with neither installed this is a no-op. */
+  function track(name, params) {
+    params = params || {};
+    params.page_path = location.pathname;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: name }, params));
+    if (typeof window.gtag === "function") window.gtag("event", name, params);
   }
 
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener("click", function (e) {
-      var id = anchor.getAttribute("href");
-      if (!id || id === "#") return;
-      var target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (history.pushState) {
-        history.pushState(null, "", id);
-      }
-    });
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest("[data-track]") : null;
+    if (!el) return;
+    track(el.getAttribute("data-track"), { link_location: el.getAttribute("data-loc") || "" });
   });
 
-  if (header) {
-    var onScroll = function () {
-      header.style.boxShadow =
-        window.scrollY > 8 ? "0 8px 24px rgba(0,0,0,0.25)" : "none";
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+  /* ---------- Mobile menu ---------- */
+  var toggle = document.querySelector(".nav-toggle");
+  var menu = document.getElementById("mobile-nav");
+
+  function setMenu(open) {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.hidden = !open;
   }
 
+  if (toggle && menu) {
+    toggle.addEventListener("click", function () {
+      setMenu(toggle.getAttribute("aria-expanded") !== "true");
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !menu.hidden) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+  }
+
+  /* ---------- Service request form ---------- */
+  var form = document.getElementById("service-form");
   if (!form) return;
 
-  function showError(field, message) {
-    var input = form.querySelector("#" + field);
-    var err = form.querySelector("#" + field + "-error");
-    if (input) input.classList.add("is-invalid");
+  var submitBtn = form.querySelector("[type=submit]");
+  var banner = document.getElementById("form-error");
+  var success = document.getElementById("form-success");
+  var required = ["name", "phone", "location", "service"];
+
+  function fieldError(id, message) {
+    var input = form.querySelector("#" + id);
+    var err = document.getElementById(id + "-error");
+    if (input) {
+      input.classList.toggle("is-invalid", !!message);
+      if (message) input.setAttribute("aria-invalid", "true");
+      else input.removeAttribute("aria-invalid");
+    }
     if (err) {
-      err.hidden = false;
-      err.textContent = message;
+      err.textContent = message || "";
+      err.hidden = !message;
     }
   }
 
-  function clearError(field) {
-    var input = form.querySelector("#" + field);
-    var err = form.querySelector("#" + field + "-error");
-    if (input) input.classList.remove("is-invalid");
-    if (err) {
-      err.hidden = true;
-      err.textContent = "";
+  function validate() {
+    var ok = true;
+    var v = function (id) { return (form.elements[id].value || "").trim(); };
+    required.forEach(function (id) { fieldError(id, ""); });
+    fieldError("email", "");
+
+    if (!v("name")) { fieldError("name", "Please enter your name."); ok = false; }
+    var digits = v("phone").replace(/\D/g, "");
+    if (digits.length < 10) { fieldError("phone", "Please enter a 10-digit phone number."); ok = false; }
+    if (!v("location")) { fieldError("location", "Please enter the service address or ZIP code."); ok = false; }
+    if (!v("service")) { fieldError("service", "Please choose a service."); ok = false; }
+    if (v("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) {
+      fieldError("email", "Please check the email address.");
+      ok = false;
     }
+    return ok;
   }
 
-  function clearAllErrors() {
-    ["name", "email", "address", "service"].forEach(clearError);
-    if (formError) {
-      formError.hidden = true;
-      formError.textContent = "";
-    }
-  }
-
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
-
-  function setSubmitting(isSubmitting) {
-    if (!submitBtn) return;
-    submitBtn.disabled = isSubmitting;
-    submitBtn.textContent = isSubmitting ? "Sending…" : "Submit Request";
-  }
+  required.concat("email").forEach(function (id) {
+    var el = form.elements[id];
+    if (el) el.addEventListener("input", function () { fieldError(id, ""); });
+  });
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    clearAllErrors();
-
-    var name = (form.name.value || "").trim();
-    var email = (form.email.value || "").trim();
-    var address = (form.address.value || "").trim();
-    var service = form.service.value || "";
-    var message = (form.message.value || "").trim();
-    var valid = true;
-
-    if (!name) {
-      showError("name", "Please enter your name.");
-      valid = false;
-    }
-    if (!email) {
-      showError("email", "Please enter your email.");
-      valid = false;
-    } else if (!isValidEmail(email)) {
-      showError("email", "Please enter a valid email address.");
-      valid = false;
-    }
-    if (!address) {
-      showError("address", "Please enter your address or city.");
-      valid = false;
-    }
-    if (!service) {
-      showError("service", "Please select a service.");
-      valid = false;
-    }
-
-    if (!valid) {
-      var firstInvalid = form.querySelector(".is-invalid");
-      if (firstInvalid) firstInvalid.focus();
+    banner.hidden = true;
+    if (!validate()) {
+      var first = form.querySelector(".is-invalid");
+      if (first) first.focus();
       return;
     }
+    if (form.elements._gotcha && form.elements._gotcha.value) return;
 
-    setSubmitting(true);
+    var data = {};
+    new FormData(form).forEach(function (value, key) { data[key] = value; });
+    data._subject = "Service request (" + (data.urgency || "n/a") + ") — " + data.service;
+    data._template = "table";
+    data.page = location.href;
+    if (data.email) data._replyto = data.email;
 
-    var payload = {
-      name: name,
-      email: email,
-      address: address,
-      service: service,
-      message: message,
-      _subject: "Xpress Lehigh — Service Request",
-      _template: "table",
-      _replyto: email
-    };
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
 
     fetch(FORM_ENDPOINT, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(payload)
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data)
     })
-      .then(function (res) {
-        return res.json().then(function (data) {
-          return { ok: res.ok, data: data };
-        });
-      })
-      .then(function (result) {
-        if (!result.ok) {
-          throw new Error((result.data && result.data.message) || "Send failed");
-        }
-        form.classList.add("is-submitted");
-        if (success) {
-          success.hidden = false;
-          success.setAttribute("tabindex", "-1");
-          success.focus();
-        }
-        form.querySelectorAll("input, select, textarea, button").forEach(function (el) {
-          if (el.type !== "submit") el.setAttribute("disabled", "disabled");
-        });
-        if (submitBtn) submitBtn.disabled = true;
+      .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
+      .then(function (json) {
+        if (json && json.success === "false") throw new Error(json.message || "Rejected");
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+        track("form_submit", { service: data.service, urgency: data.urgency || "" });
       })
       .catch(function () {
-        setSubmitting(false);
-        if (formError) {
-          formError.hidden = false;
-          formError.textContent =
-            "We couldn’t send your request just now. Please try again in a minute, or email xpressseptictankpumping@gmail.com directly.";
-        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Request";
+        banner.hidden = false;
+        track("form_error");
       });
-  });
-
-  ["name", "email", "address", "service"].forEach(function (field) {
-    var el = form.querySelector("#" + field);
-    if (!el) return;
-    el.addEventListener("input", function () {
-      clearError(field);
-    });
-    el.addEventListener("change", function () {
-      clearError(field);
-    });
   });
 })();

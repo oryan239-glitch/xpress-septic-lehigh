@@ -1,0 +1,7 @@
+# GitHub Pages / Jekyll: publish only the built site.
+exclude:
+  - src/
+  - tools/
+  - docs/
+  - README.md
+  - photos/
