@@ -1035,3 +1035,12 @@ a:hover {
     padding-bottom: 4rem;
   }
 }
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+}
