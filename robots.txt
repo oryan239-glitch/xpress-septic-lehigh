@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /quote/
+
+Sitemap: https://xpressseptictankpumpinglehighacres.com/sitemap.xml
