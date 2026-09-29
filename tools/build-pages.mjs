@@ -1,38 +1,17 @@
 // Builds the static HTML pages from src/pages/*.html.
-// Shared header, footer, icons, meta tags and JSON-LD come from this file so the business
-// name, phone number and Google Business Profile links stay identical on every page.
+// Shared header, footer, icons, meta tags, JSON-LD and the optional trust components
+// (reviews, gallery, credentials) come from this file. Business facts live in
+// ../site.config.mjs so name, phone and Google Business Profile links stay identical everywhere.
 //
 // Run from the repo root:  node tools/build-pages.mjs
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-
-/* ================= Business facts (single source of truth) =================
-   Keep these identical to the Google Business Profile. */
-export const SITE = {
-  name: "Xpress Septic Tank Pumping",
-  url: "https://xpressseptictankpumpinglehighacres.com",
-  phoneDisplay: "(239) 506-1163",
-  phoneTel: "+12395061163",
-  phoneSchema: "+1-239-506-1163",
-  email: "xpressseptictankpumping@gmail.com",
-  city: "Lehigh Acres",
-  region: "FL",
-  // Paste the exact Google Maps / Business Profile share URL here, then rebuild.
-  // While empty, no Google links, review section or sameAs are output.
-  gbpUrl: "",
-  // "Ask for reviews" link from the Business Profile (g.page/r/.../review). Optional.
-  gbpReviewUrl: "",
-  // Only fill these in from the live Business Profile. Leave null to hide the rating.
-  gbpRating: null,       // e.g. 4.9
-  gbpReviewCount: null,  // e.g. 37
-  bookingUrl: "/quote/",
-  hours: "Open 24 hours, 7 days a week",
-  year: new Date().getFullYear(),
-};
+const SITE = (await import(pathToFileURL(join(root, "site.config.mjs")).href)).default;
+const YEAR = new Date().getFullYear();
 
 /* ================= Icons (paths adapted from Lucide, ISC licence) ================= */
 const ICONS = {
@@ -51,7 +30,6 @@ const ICONS = {
   clipboard: '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01"/>',
   users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
   eye: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
-  sparkle: '<path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/>',
   star: '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>',
   menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
   close: '<path d="M18 6 6 18M6 6l12 12"/>',
@@ -61,7 +39,8 @@ const ICONS = {
   rain: '<path d="M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2M16 14v6M8 14v6M12 16v6"/>',
   shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
   external: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
-  send: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+  award: '<circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/>',
+  quote: '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.76-2.02-2-2H4c-1.25 0-2 .75-2 1.97V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .01-1 1.03V20c0 1 0 1 1 1zM15 21c3 0 7-1 7-8V5c0-1.25-.76-2.02-2-2h-4c-1.25 0-2 .75-2 1.97V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>',
 };
 
 const sprite =
@@ -72,24 +51,13 @@ const sprite =
   "</svg>";
 
 const icon = (name) => `<svg aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /* ================= Pages ================= */
 const SERVICES = {
-  pumping: {
-    path: "/septic-tank-pumping-lehigh-acres/",
-    label: "Septic Tank Pumping",
-    serviceType: "Septic tank pumping",
-  },
-  emergency: {
-    path: "/emergency-septic-service-lehigh-acres/",
-    label: "Emergency Septic Service",
-    serviceType: "Emergency septic service",
-  },
-  locating: {
-    path: "/septic-tank-locating-lehigh-acres/",
-    label: "Septic Tank Locating",
-    serviceType: "Septic tank locating",
-  },
+  pumping: { path: "/septic-tank-pumping-lehigh-acres/", label: "Septic Tank Pumping", serviceType: "Septic tank pumping" },
+  emergency: { path: "/emergency-septic-service-lehigh-acres/", label: "Emergency Septic Service", serviceType: "Emergency septic service" },
+  locating: { path: "/septic-tank-locating-lehigh-acres/", label: "Septic Tank Locating", serviceType: "Septic tank locating" },
 };
 
 const PAGES = [
@@ -97,10 +65,11 @@ const PAGES = [
     src: "index.html",
     out: "index.html",
     path: "/",
-    title: "Septic Tank Pumping Lehigh Acres FL | Open 24 Hours | Xpress Septic",
+    title: "Septic Tank Pumping Lehigh Acres FL | Open 24 Hours | Xpress Septic Pumping",
     description:
-      "Septic tank pumping, cleaning and 24-hour emergency septic service in Lehigh Acres, FL. Xpress Septic Tank Pumping is open 24 hours. Call (239) 506-1163.",
+      "Septic tank pumping, cleaning and 24-hour emergency septic service in Lehigh Acres, FL. Xpress Septic Pumping is open 24 hours. Call (239) 506-1163.",
     nav: "home",
+    home: true,
   },
   {
     src: "septic-tank-pumping.html",
@@ -117,9 +86,9 @@ const PAGES = [
     src: "emergency-septic-service.html",
     out: "emergency-septic-service-lehigh-acres/index.html",
     path: SERVICES.emergency.path,
-    title: "24-Hour Emergency Septic Pumping in Lehigh Acres, FL | Xpress",
+    title: "24-Hour Emergency Septic Pumping in Lehigh Acres, FL | Xpress Septic Pumping",
     description:
-      "Septic backing up in Lehigh Acres? Xpress Septic Tank Pumping is open 24 hours. What to do right now, common causes and how we respond. Call (239) 506-1163.",
+      "Septic backing up in Lehigh Acres? Xpress Septic Pumping is open 24 hours. What to do right now, common causes and how we respond. Call (239) 506-1163.",
     nav: "emergency",
     service: SERVICES.emergency,
     crumb: "Emergency Septic Service",
@@ -130,23 +99,44 @@ const PAGES = [
     path: SERVICES.locating.path,
     title: "Septic Tank Locating in Lehigh Acres, FL | Records & Buried Lids",
     description:
-      "Can't find your septic tank? Where to find septic tank location records in Lee County, clues to look for, and how Xpress Septic Tank Pumping locates buried lids.",
+      "Can't find your septic tank? Where to find septic tank location records in Lee County, clues to look for, and how Xpress Septic Pumping locates buried lids.",
     nav: "locating",
     service: SERVICES.locating,
     crumb: "Septic Tank Locating",
   },
   {
+    src: "privacy.html",
+    out: "privacy/index.html",
+    path: "/privacy/",
+    title: "Privacy Policy | Xpress Septic Pumping",
+    description: "How Xpress Septic Pumping handles information sent through this website's quote form or by phone.",
+    nav: "",
+    crumb: "Privacy Policy",
+  },
+  {
     src: "404.html",
     out: "404.html",
     path: "/404.html",
-    title: "Page Not Found | Xpress Septic Tank Pumping",
-    description: "This page doesn't exist. Call Xpress Septic Tank Pumping at (239) 506-1163 or go back to the homepage.",
+    title: "Page Not Found | Xpress Septic Pumping",
+    description: "This page doesn't exist. Call Xpress Septic Pumping at (239) 506-1163 or go back to the homepage.",
     nav: "",
     noindex: true,
   },
 ];
 
-/* ================= Partials ================= */
+/* ================= Components ================= */
+const brandMark = (lazy) =>
+  `<img class="brand-mark" src="/assets/logo-mark.svg" alt="" width="36" height="36"${lazy ? ' loading="lazy"' : ""}>`;
+const brand = (current, lazy) => `<a class="brand" href="/"${current ? ' aria-current="page"' : ""}>
+      ${brandMark(lazy)}
+      <span class="brand-name"><strong>Xpress Septic Pumping</strong><span>Lehigh Acres, FL</span></span>
+    </a>`;
+
+const callBtn = (loc, label = `Call ${SITE.phoneDisplay}`, cls = "btn btn-call") =>
+  `<a class="${cls}" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="${loc}">${icon("phone")} ${label}</a>`;
+const quoteBtn = (loc, cls = "btn btn-ghost", label = "Get a Quote") =>
+  `<a class="${cls}" href="/#quote" data-track="quote_click" data-loc="${loc}">${label}</a>`;
+
 function header(nav) {
   const cur = (k) => (nav === k ? ' aria-current="page"' : "");
   const links = [
@@ -154,37 +144,32 @@ function header(nav) {
     ["emergency", SERVICES.emergency.path, "24/7 Emergency"],
     ["locating", SERVICES.locating.path, "Tank Locating"],
     ["faq", "/#faq", "FAQ"],
-    ["contact", "/#request", "Request Service"],
   ];
   const li = links.map(([k, href, t]) => `<li><a href="${href}"${cur(k)}>${t}</a></li>`).join("");
   return `<a class="skip-link" href="#main">Skip to main content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/"${nav === "home" ? ' aria-current="page"' : ""}>
-      <img class="brand-mark" src="/assets/logo-mark.svg" alt="" width="38" height="38">
-      <span class="brand-name"><strong>Xpress Septic</strong><span>Tank Pumping</span></span>
-    </a>
-    <nav class="primary-nav" aria-label="Main">
-      <ul>${li}</ul>
-    </nav>
-    <a class="header-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header"><small>Open 24 hours</small><strong>${SITE.phoneDisplay}</strong></a>
-    <a class="header-call-icon" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header_mobile">${icon("phone")}<span class="visually-hidden">Call ${SITE.phoneDisplay}</span></a>
+    ${brand(nav === "home")}
+    <nav class="primary-nav" aria-label="Main"><ul>${li}</ul></nav>
+    <a class="header-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header"><small>${SITE.open24h ? "Open 24 hours" : "Call"}</small><strong>${SITE.phoneDisplay}</strong></a>
+    ${quoteBtn("header", "btn btn-call btn-sm header-quote")}
+    <a class="header-call-icon" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header_mobile">${icon("phone")}<span class="visually-hidden">Call ${SITE.name} at ${SITE.phoneDisplay}</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
       <svg class="icon-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
       <svg class="icon-close" aria-hidden="true" focusable="false"><use href="#i-close"/></svg>
     </button>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
-    <ul><li><a href="/">Home</a></li>${li}</ul>
-    <a class="btn btn-call" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="mobile_menu">${icon("phone")} Call ${SITE.phoneDisplay}</a>
+    <ul><li><a href="/">Home</a></li>${li}<li><a href="/#quote">Get a Quote</a></li></ul>
+    ${callBtn("mobile_menu")}
   </nav>
 </header>`;
 }
 
-function googleLinks(loc) {
+function googleLinkItems(loc) {
   if (!SITE.gbpUrl) return "";
   const review = SITE.gbpReviewUrl
-    ? `<li><a href="${SITE.gbpReviewUrl}" target="_blank" rel="noopener" data-track="review_click" data-loc="${loc}">Leave us a Google review</a></li>`
+    ? `<li><a href="${SITE.gbpReviewUrl}" target="_blank" rel="noopener" data-track="review_click" data-loc="${loc}">Leave a Google review</a></li>`
     : "";
   return `<li><a href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="${loc}">View us on Google</a></li>${review}`;
 }
@@ -194,68 +179,170 @@ function footer() {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="/">
-          <img class="brand-mark" src="/assets/logo-mark.svg" alt="" width="38" height="38" loading="lazy">
-          <span class="brand-name"><strong>Xpress Septic</strong><span>Tank Pumping</span></span>
-        </a>
-        <p>${SITE.name} provides septic tank pumping, cleaning and emergency septic service for homes in Lehigh Acres, Florida, and nearby Lee County communities.</p>
-        <p><strong>${SITE.hours}</strong></p>
+        ${brand(false, true)}
+        <p>Septic tank pumping, septic tank cleaning, emergency septic service and septic tank locating for homes in Lehigh Acres and nearby Lee County, Florida.</p>
         <a class="footer-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="footer">${SITE.phoneDisplay}</a>
-        <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+        <p class="footer-meta">${SITE.hours}<br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
       </div>
       <div>
         <h2>Services</h2>
         <ul>
           <li><a href="${SERVICES.pumping.path}">Septic tank pumping</a></li>
+          <li><a href="${SERVICES.pumping.path}">Septic tank cleaning</a></li>
           <li><a href="${SERVICES.emergency.path}">Emergency septic service</a></li>
           <li><a href="${SERVICES.locating.path}">Septic tank locating</a></li>
-          <li><a href="/#services">Repairs &amp; replacements</a></li>
         </ul>
       </div>
       <div>
         <h2>Company</h2>
         <ul>
-          <li><a href="/#request">Request service</a></li>
-          <li><a href="/#lehigh-acres">Septic in Lehigh Acres</a></li>
-          <li><a href="/#faq">FAQ</a></li>
-          ${googleLinks("footer")}
+          <li><a href="/#quote">Get a quote</a></li>
+          <li><a href="/#service-area">Service area</a></li>
+          <li><a href="/#faq">Septic FAQ</a></li>
+          ${googleLinkItems("footer")}
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; ${SITE.year} ${SITE.name}. Serving Lehigh Acres, FL.</p>
-      <p>Septic tank pumping · Lee County, Florida</p>
+      <p>&copy; ${YEAR} ${SITE.name}. Serving Lehigh Acres and Lee County, Florida.</p>
+      <p><a href="/privacy/">Privacy Policy</a></p>
     </div>
   </div>
 </footer>
 <div class="action-bar">
-  <a class="btn btn-call" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="sticky_bar">${icon("phone")} Call Now</a>
-  <a class="btn btn-ghost" href="/#request" data-track="request_click" data-loc="sticky_bar">Request Service</a>
+  ${callBtn("sticky_bar", "Call Now")}
+  ${quoteBtn("sticky_bar", "btn btn-ghost", "Get Quote")}
 </div>`;
 }
 
-function requestSection() {
-  return `<section class="section section-dark" id="request" aria-labelledby="request-heading">
+function picture(p, { lazy = true, sizes = "(min-width: 1000px) 380px, (min-width: 700px) 50vw, 100vw", priority = false } = {}) {
+  const set = (ext) => p.widths.map((w) => `/assets/img/${p.name}-${w}.${ext} ${w}w`).join(", ");
+  const big = p.widths.at(-1);
+  const load = priority ? ' fetchpriority="high"' : lazy ? ' loading="lazy"' : "";
+  return `<picture>
+      <source type="image/avif" srcset="${set("avif")}" sizes="${sizes}">
+      <source type="image/webp" srcset="${set("webp")}" sizes="${sizes}">
+      <img src="/assets/img/${p.name}-${big}.jpg" srcset="${set("jpg")}" sizes="${sizes}" width="${p.width}" height="${p.height}" alt="${esc(p.alt)}" decoding="async"${load}>
+    </picture>`;
+}
+
+const HERO_SIZES = "(min-width: 900px) 520px, calc(100vw - 40px)";
+
+function heroMedia() {
+  if (SITE.heroPhoto) {
+    return `<figure class="hero-media is-photo">
+      ${picture(SITE.heroPhoto, { lazy: false, priority: true, sizes: HERO_SIZES })}
+      ${SITE.heroPhoto.caption ? `<figcaption>${esc(SITE.heroPhoto.caption)}</figcaption>` : ""}
+    </figure>`;
+  }
+  return `<figure class="hero-media">
+      <img src="/assets/truck-illustration.svg" width="640" height="340" alt="Illustration of a septic vacuum pump truck" fetchpriority="high">
+      <figcaption><span>Septic pumping</span><span>Emergency service</span><span>Tank locating</span></figcaption>
+    </figure>`;
+}
+
+function heroPreload() {
+  if (!SITE.heroPhoto) return "";
+  const p = SITE.heroPhoto;
+  const set = p.widths.map((w) => `/assets/img/${p.name}-${w}.avif ${w}w`).join(", ");
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${set}" imagesizes="${HERO_SIZES}" fetchpriority="high">`;
+}
+
+function trustStats() {
+  const t = SITE.trust || {};
+  const items = [];
+  if (SITE.gbpRating && SITE.gbpReviewCount)
+    items.push([`${SITE.gbpRating}★`, `${SITE.gbpReviewCount} Google reviews`]);
+  if (t.yearsInBusiness) items.push([`${t.yearsInBusiness}+`, "years in business"]);
+  if (t.jobsCompleted) items.push([t.jobsCompleted, "jobs completed"]);
+  if (t.license) items.push(["Licensed", esc(t.license)]);
+  if (!items.length) return "";
+  return `<section class="stats" aria-label="${SITE.name} at a glance">
+  <div class="container"><dl class="stats-list">${items
+    .map(([v, l]) => `<div><dt>${l}</dt><dd>${v}</dd></div>`)
+    .join("")}</dl></div>
+</section>`;
+}
+
+function gallerySection() {
+  if (!SITE.gallery || !SITE.gallery.length) return "";
+  const items = SITE.gallery
+    .map((p) => `<figure class="gallery-item">
+      ${picture(p)}
+      ${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ""}
+    </figure>`)
+    .join("\n    ");
+  return `<section class="section" id="our-work" aria-labelledby="work-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Our equipment &amp; work</p>
+      <h2 id="work-heading">Real trucks. Real jobs in Lehigh Acres.</h2>
+      <p class="section-lead">Photos from our own equipment and septic jobs around Lee County.</p>
+    </div>
+    <div class="gallery">
+    ${items}
+    </div>
+  </div>
+</section>`;
+}
+
+function reviewsSection() {
+  const reviews = SITE.reviews || [];
+  if (!SITE.gbpUrl && !reviews.length) return "";
+  const rating =
+    SITE.gbpRating && SITE.gbpReviewCount
+      ? `<p class="rating-summary"><span class="stars" aria-hidden="true">★★★★★</span> <strong>${SITE.gbpRating} out of 5</strong> from ${SITE.gbpReviewCount} Google reviews</p>`
+      : "";
+  const cards = reviews
+    .map((r) => `<figure class="review-card">
+        ${icon("quote")}
+        <blockquote><p>${esc(r.text)}</p></blockquote>
+        <figcaption>${r.rating ? `<span class="stars" aria-label="${r.rating} out of 5 stars">${"★".repeat(r.rating)}</span>` : ""}<strong>${esc(r.author)}</strong><span class="review-src">Google review${r.date ? ` · ${esc(r.date)}` : ""}</span></figcaption>
+      </figure>`)
+    .join("\n      ");
+  const ctas = [
+    SITE.gbpUrl
+      ? `<a class="btn btn-dark" href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="reviews">${icon("external")} Read Our Google Reviews</a>`
+      : "",
+    SITE.gbpReviewUrl
+      ? `<a class="btn btn-line" href="${SITE.gbpReviewUrl}" target="_blank" rel="noopener" data-track="review_click" data-loc="reviews">${icon("star")} Leave a Review</a>`
+      : "",
+  ].join("");
+  return `<section class="section section-alt" id="reviews" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Google reviews</p>
+      <h2 id="reviews-heading">What customers say about ${SITE.name}</h2>
+      ${rating}
+    </div>
+    ${cards ? `<div class="review-grid">\n      ${cards}\n    </div>` : ""}
+    ${ctas ? `<div class="center-ctas">${ctas}</div>` : ""}
+  </div>
+</section>`;
+}
+
+function quoteSection() {
+  return `<section class="section section-dark" id="quote" aria-labelledby="quote-heading">
   <div class="container contact-grid">
     <div>
-      <p class="eyebrow">Request service</p>
-      <h2 id="request-heading">Need septic service in Lehigh Acres?</h2>
-      <p class="section-lead">We're open 24 hours, and calling is the fastest way to get on the schedule. If you can't talk right now, send the form and we'll call you back.</p>
-      <a class="big-call" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="request_section">
+      <p class="eyebrow">Get a quote</p>
+      <h2 id="quote-heading">Need septic service in Lehigh Acres?</h2>
+      <p class="section-lead">We're open 24 hours, and calling is the fastest way to get on the schedule. Prefer to write? Send the short form and we'll call you back.</p>
+      <a class="big-call" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="quote_section">
         ${icon("phone")}
         <span><small>Call ${SITE.name}</small><strong>${SITE.phoneDisplay}</strong></span>
       </a>
       <ul class="checks">
-        <li>${icon("check")}<span>Routine pump-outs and septic backups</span></li>
+        <li>${icon("check")}<span>Pump-outs, tank cleaning and septic backups</span></li>
         <li>${icon("check")}<span>Help finding buried tank lids</span></li>
         <li>${icon("check")}<span>Lehigh Acres and nearby Lee County</span></li>
-        <li>${icon("check")}<span>Open 24 hours, 7 days a week</span></li>
+        <li>${icon("check")}<span>${SITE.hours}</span></li>
       </ul>
     </div>
     <div class="form-card">
-      <form id="service-form" novalidate>
-        <h3>Send a service request</h3>
-        <p class="form-intro">Takes about a minute. Fields marked optional can be skipped.</p>
+      <form id="quote-form" novalidate>
+        <h3>Request a quote</h3>
+        <p class="form-intro">Takes about a minute. We'll call you back.</p>
         <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-grid">
           <div class="field">
@@ -268,16 +355,11 @@ function requestSection() {
             <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="phone-error">
             <p class="field-error" id="phone-error" hidden></p>
           </div>
-          <div class="field full">
-            <label for="location">Service address or ZIP code</label>
-            <input id="location" name="location" type="text" autocomplete="street-address" required aria-describedby="location-error">
-            <p class="field-error" id="location-error" hidden></p>
-          </div>
           <div class="field">
             <label for="service">Service needed</label>
             <select id="service" name="service" required aria-describedby="service-error">
               <option value="">Choose one…</option>
-              <option>Septic tank pumping</option>
+              <option>Septic tank pumping / cleaning</option>
               <option>Septic backup / emergency</option>
               <option>Find my septic tank</option>
               <option>Septic repair</option>
@@ -286,56 +368,29 @@ function requestSection() {
             <p class="field-error" id="service-error" hidden></p>
           </div>
           <div class="field">
+            <label for="zip">Property ZIP code</label>
+            <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="10" required aria-describedby="zip-error">
+            <p class="field-error" id="zip-error" hidden></p>
+          </div>
+          <div class="field full">
             <label for="email">Email <span class="opt">(optional)</span></label>
             <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
             <p class="field-error" id="email-error" hidden></p>
           </div>
-          <fieldset class="field full">
-            <legend>How soon do you need us?</legend>
-            <div class="radio-row">
-              <label><input type="radio" name="urgency" value="Urgent — backing up now"><span>Urgent / backing up</span></label>
-              <label><input type="radio" name="urgency" value="This week" checked><span>This week</span></label>
-              <label><input type="radio" name="urgency" value="Flexible / routine"><span>Flexible</span></label>
-            </div>
-          </fieldset>
           <div class="field full">
-            <label for="message">Anything we should know? <span class="opt">(optional)</span></label>
-            <textarea id="message" name="message" rows="3" placeholder="Last time it was pumped, where the lid is, gate codes, what's happening…"></textarea>
+            <label for="message">Message <span class="opt">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" placeholder="What's happening, when it was last pumped, where the lid is…"></textarea>
           </div>
         </div>
-        <button class="btn btn-dark btn-block" type="submit" style="margin-top:20px">Send Request</button>
-        <p class="form-note">For backups happening now, please call ${SITE.phoneDisplay} instead of waiting on the form. We only use your details to respond to this request.</p>
+        <button class="btn btn-dark btn-block form-submit" type="submit">Send Quote Request</button>
+        <p class="form-note">Septic backing up right now? Please call ${SITE.phoneDisplay} instead. See our <a href="/privacy/">privacy policy</a>.</p>
         <p class="form-banner error" id="form-error" role="alert" hidden>Your request didn't go through. Please call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a> or try again.</p>
       </form>
       <div class="form-success" id="form-success" tabindex="-1" role="status" hidden>
         ${icon("check")}
         <h3>Request received</h3>
-        <p>Thanks — we'll call you back. If it's urgent, call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a>.</p>
+        <p>Thanks. We'll call you back shortly. If it's urgent, call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a>.</p>
       </div>
-    </div>
-  </div>
-</section>`;
-}
-
-function reviewsSection() {
-  if (!SITE.gbpUrl) return "";
-  const rating =
-    SITE.gbpRating && SITE.gbpReviewCount
-      ? `<p class="section-lead"><strong>${SITE.gbpRating} out of 5</strong> from ${SITE.gbpReviewCount} Google reviews</p>`
-      : "";
-  const leave = SITE.gbpReviewUrl
-    ? `<a class="btn btn-line" href="${SITE.gbpReviewUrl}" target="_blank" rel="noopener" data-track="review_click" data-loc="reviews_section">${icon("star")} Leave a review</a>`
-    : "";
-  return `<section class="section" id="reviews" aria-labelledby="reviews-heading">
-  <div class="container">
-    <div class="section-head center">
-      <p class="eyebrow">Google reviews</p>
-      <h2 id="reviews-heading">See what customers say on Google</h2>
-      ${rating}
-    </div>
-    <div class="hero-ctas" style="justify-content:center">
-      <a class="btn btn-dark" href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="reviews_section">${icon("external")} Read our Google reviews</a>
-      ${leave}
     </div>
   </div>
 </section>`;
@@ -348,6 +403,7 @@ const ALL_DAY = {
   opens: "00:00",
   closes: "23:59",
 };
+
 function businessNode() {
   const node = {
     "@type": "HomeAndConstructionBusiness",
@@ -357,16 +413,10 @@ function businessNode() {
     telephone: SITE.phoneSchema,
     email: SITE.email,
     logo: `${SITE.url}/assets/apple-touch-icon.png`,
-    image: `${SITE.url}/assets/og-xpress-septic-lehigh-acres.jpg`,
+    image: `${SITE.url}/assets/og-xpress-septic-pumping.jpg`,
     description:
       "Septic tank pumping, septic tank cleaning, 24-hour emergency septic service and septic tank locating for homes in Lehigh Acres, Florida.",
-    openingHoursSpecification: [ALL_DAY],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: SITE.city,
-      addressRegion: SITE.region,
-      addressCountry: "US",
-    },
+    address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: "US" },
     areaServed: [
       { "@type": "City", name: "Lehigh Acres, Florida", sameAs: "https://en.wikipedia.org/wiki/Lehigh_Acres,_Florida" },
       { "@type": "AdministrativeArea", name: "Lee County, Florida", sameAs: "https://en.wikipedia.org/wiki/Lee_County,_Florida" },
@@ -375,29 +425,25 @@ function businessNode() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Septic services",
-      itemListElement: Object.values(SERVICES).map((s) => ({
-        "@type": "Offer",
-        itemOffered: { "@id": `${SITE.url}${s.path}#service` },
-      })),
+      itemListElement: Object.values(SERVICES).map((s) => ({ "@type": "Offer", itemOffered: { "@id": `${SITE.url}${s.path}#service` } })),
     },
   };
+  if (SITE.alternateName) node.alternateName = SITE.alternateName;
+  if (SITE.open24h) node.openingHoursSpecification = [ALL_DAY];
   if (SITE.gbpUrl) {
     node.sameAs = [SITE.gbpUrl];
     node.hasMap = SITE.gbpUrl;
   }
-  if (SITE.gbpRating && SITE.gbpReviewCount) {
-    // Only set from the live Business Profile — never estimate.
-    node.aggregateRating = { "@type": "AggregateRating", ratingValue: SITE.gbpRating, reviewCount: SITE.gbpReviewCount };
-  }
+  // No aggregateRating: Google treats ratings a business marks up about itself as
+  // self-serving and ignores them. The rating is shown visibly on the page instead.
   return node;
 }
 
 function extractFaq(html) {
   const out = [];
   const re = /<details class="faq-item"[^>]*>\s*<summary>([\s\S]*?)<\/summary>\s*<div class="faq-answer">([\s\S]*?)<\/div>\s*<\/details>/g;
+  const text = (s) => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").replace(/&amp;/g, "&").trim();
   let m;
-  const text = (s) =>
-    s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").replace(/&amp;/g, "&").replace(/&rsquo;|&#8217;/g, "’").trim();
   while ((m = re.exec(html))) out.push({ q: text(m[1]), a: text(m[2]) });
   return out;
 }
@@ -405,16 +451,9 @@ function extractFaq(html) {
 function jsonLd(page, body) {
   const pageUrl = `${SITE.url}${page.path}`;
   const graph = [];
-  if (page.path === "/") {
+  if (page.home) {
     graph.push(businessNode());
-    graph.push({
-      "@type": "WebSite",
-      "@id": `${SITE.url}/#website`,
-      url: `${SITE.url}/`,
-      name: SITE.name,
-      publisher: { "@id": `${SITE.url}/#business` },
-      inLanguage: "en-US",
-    });
+    graph.push({ "@type": "WebSite", "@id": `${SITE.url}/#website`, url: `${SITE.url}/`, name: SITE.name, publisher: { "@id": `${SITE.url}/#business` }, inLanguage: "en-US" });
   }
   const webPage = {
     "@type": "WebPage",
@@ -439,7 +478,7 @@ function jsonLd(page, body) {
   }
   graph.push(webPage);
   if (page.service) {
-    graph.push({
+    const svc = {
       "@type": "Service",
       "@id": `${pageUrl}#service`,
       name: `${page.service.label} in Lehigh Acres, FL`,
@@ -447,8 +486,9 @@ function jsonLd(page, body) {
       url: pageUrl,
       provider: { "@id": `${SITE.url}/#business` },
       areaServed: { "@type": "City", name: "Lehigh Acres, Florida" },
-      hoursAvailable: ALL_DAY,
-    });
+    };
+    if (SITE.open24h) svc.hoursAvailable = ALL_DAY;
+    graph.push(svc);
   }
   const faqs = extractFaq(body);
   if (faqs.length) {
@@ -467,9 +507,14 @@ function fill(html) {
     .replaceAll("{{PHONE}}", SITE.phoneDisplay)
     .replaceAll("{{TEL}}", SITE.phoneTel)
     .replaceAll("{{NAME}}", SITE.name)
-    .replaceAll("{{REQUEST_SECTION}}", requestSection())
+    .replaceAll("{{HOURS}}", SITE.hours)
+    .replaceAll("{{HERO_MEDIA}}", heroMedia())
+    .replaceAll("{{TRUST_STATS}}", trustStats())
+    .replaceAll("{{GALLERY_SECTION}}", gallerySection())
     .replaceAll("{{REVIEWS_SECTION}}", reviewsSection())
-    .replaceAll("{{GOOGLE_LINKS}}", googleLinks("page"))
+    .replaceAll("{{QUOTE_SECTION}}", quoteSection())
+    .replace(/\{\{call:([a-z_]+)\}\}/g, (_, loc) => callBtn(loc))
+    .replace(/\{\{quote:([a-z_]+)\}\}/g, (_, loc) => quoteBtn(loc))
     .replace(/\{\{i:([a-z]+)\}\}/g, (_, n) => {
       if (!ICONS[n]) throw new Error(`Unknown icon ${n}`);
       return icon(n);
@@ -478,11 +523,11 @@ function fill(html) {
 
 function render(page) {
   const body = fill(readFileSync(join(root, "src/pages", page.src), "utf8"));
+  if (/\{\{[^}]+\}\}/.test(body)) throw new Error(`Unfilled placeholder in ${page.src}: ${body.match(/\{\{[^}]+\}\}/)[0]}`);
   const canonical = `${SITE.url}${page.path}`;
-  const ogImage = `${SITE.url}/assets/og-xpress-septic-lehigh-acres.jpg`;
-  const esc = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  const ogImage = `${SITE.url}/assets/og-xpress-septic-pumping.jpg`;
   const indexing = page.noindex
-    ? '<meta name="robots" content="noindex">'
+    ? '<meta name="robots" content="noindex, follow">'
     : `<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="${canonical}">`;
   return `<!DOCTYPE html>
@@ -493,7 +538,8 @@ function render(page) {
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
 ${indexing}
-<meta name="theme-color" content="#0a1a31">
+<meta name="theme-color" content="#0b1a2f">
+${page.home ? heroPreload() : ""}
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -506,7 +552,7 @@ ${indexing}
 <meta property="og:image" content="${ogImage}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="${SITE.name} — septic tank pumping in Lehigh Acres, FL — ${SITE.phoneDisplay}">
+<meta property="og:image:alt" content="${SITE.name}: septic tank pumping in Lehigh Acres, FL. ${SITE.phoneDisplay}">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
@@ -524,7 +570,7 @@ ${footer()}
 <script src="/script.js" defer></script>
 </body>
 </html>
-`;
+`.replace(/\n{3,}/g, "\n\n");
 }
 
 for (const page of PAGES) {
@@ -534,13 +580,9 @@ for (const page of PAGES) {
   console.log("built", page.out);
 }
 
-// sitemap.xml — indexable pages only
 const today = new Date().toISOString().slice(0, 10);
 const urls = PAGES.filter((p) => !p.noindex)
   .map((p) => `  <url>\n    <loc>${SITE.url}${p.path}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`)
   .join("\n");
-writeFileSync(
-  join(root, "sitemap.xml"),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
-);
+writeFileSync(join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 console.log("built sitemap.xml");

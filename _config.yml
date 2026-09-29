@@ -5,3 +5,4 @@ exclude:
   - docs/
   - README.md
   - photos/
+  - site.config.mjs

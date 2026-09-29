@@ -1,10 +1,10 @@
-# Xpress Septic Tank Pumping — Local SEO Playbook (Lehigh Acres, FL)
+# Xpress Septic Pumping — Local SEO Playbook (Lehigh Acres, FL)
 
-Xpress Septic Tank Pumping is its own business. Never reuse listings, reviews, photos, phone numbers or citations from any similarly named septic company.
+Xpress Septic Pumping is its own business. Never reuse listings, reviews, photos, phone numbers or citations from any similarly named septic company.
 
 **Source of truth:** the Google Business Profile (GBP). The website, the GBP and every directory listing should show exactly the same:
 
-- Name: **Xpress Septic Tank Pumping** (no keywords added)
+- Name: **Xpress Septic Pumping** (no keywords added)
 - Phone: **(239) 506-1163**
 - Website: **https://xpressseptictankpumpinglehighacres.com/**
 
@@ -34,7 +34,7 @@ Also worth doing: set up **Bing Webmaster Tools** by importing from Search Conso
 - Primary: **Septic system service**. This is the closest match to "septic tank pumping" and the single most important local ranking choice.
 - Secondary: only add categories that match real work. Don't add "Plumber" unless the company actually does plumbing.
 
-**Business name:** exactly "Xpress Septic Tank Pumping". Adding "Lehigh Acres" or keywords to the name breaks Google's guidelines and can get the profile suspended.
+**Business name:** exactly "Xpress Septic Pumping", the same as the website. Adding "Lehigh Acres" or keywords to the name breaks Google's guidelines and can get the profile suspended.
 
 **Address and service area:** if customers don't come to a shop, hide the address and set service areas: Lehigh Acres first, then the nearby places you actually drive to. Never use a virtual office or mailbox address.
 
@@ -72,7 +72,7 @@ Ask every customer, the same day, while the job is fresh.
 
 1. From the GBP dashboard, click *Ask for reviews* and copy the short link. Put it in `gbpReviewUrl` in `tools/build-pages.mjs`.
 2. Send a text within 2 hours of finishing:
-   > Thanks for choosing Xpress Septic Tank Pumping today. If you have a minute, an honest Google review really helps a small local business: [link]
+   > Thanks for choosing Xpress Septic Pumping today. If you have a minute, an honest Google review really helps a small local business: [link]
 3. Add the same link to ServiceM8 invoices and receipts, and to the email follow-up.
 4. Print a QR code of the link on a leave-behind card or door hanger for the tank lid area.
 5. **Reply to every review** within 48 hours. Mention the service and area naturally, e.g. "Glad we could get your tank pumped before the weekend." Reply to negative reviews calmly and offer to fix the problem offline.

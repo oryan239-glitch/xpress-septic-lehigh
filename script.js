@@ -1,4 +1,4 @@
-/* Xpress Septic Tank Pumping — site script (no dependencies) */
+/* Xpress Septic Pumping — site script (no dependencies) */
 (function () {
   "use strict";
 
@@ -47,14 +47,14 @@
     });
   }
 
-  /* ---------- Service request form ---------- */
-  var form = document.getElementById("service-form");
+  /* ---------- Quote request form ---------- */
+  var form = document.getElementById("quote-form");
   if (!form) return;
 
   var submitBtn = form.querySelector("[type=submit]");
   var banner = document.getElementById("form-error");
   var success = document.getElementById("form-success");
-  var required = ["name", "phone", "location", "service"];
+  var required = ["name", "phone", "zip", "service"];
 
   function fieldError(id, message) {
     var input = form.querySelector("#" + id);
@@ -79,7 +79,7 @@
     if (!v("name")) { fieldError("name", "Please enter your name."); ok = false; }
     var digits = v("phone").replace(/\D/g, "");
     if (digits.length < 10) { fieldError("phone", "Please enter a 10-digit phone number."); ok = false; }
-    if (!v("location")) { fieldError("location", "Please enter the service address or ZIP code."); ok = false; }
+    if (!/^\d{5}(-\d{4})?$/.test(v("zip"))) { fieldError("zip", "Please enter a 5-digit ZIP code."); ok = false; }
     if (!v("service")) { fieldError("service", "Please choose a service."); ok = false; }
     if (v("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) {
       fieldError("email", "Please check the email address.");
@@ -105,7 +105,7 @@
 
     var data = {};
     new FormData(form).forEach(function (value, key) { data[key] = value; });
-    data._subject = "Service request (" + (data.urgency || "n/a") + ") — " + data.service;
+    data._subject = "Quote request — " + data.service + " (" + data.zip + ")";
     data._template = "table";
     data.page = location.href;
     if (data.email) data._replyto = data.email;
@@ -124,11 +124,11 @@
         form.hidden = true;
         success.hidden = false;
         success.focus();
-        track("form_submit", { service: data.service, urgency: data.urgency || "" });
+        track("form_submit", { service: data.service });
       })
       .catch(function () {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Send Request";
+        submitBtn.textContent = "Send Quote Request";
         banner.hidden = false;
         track("form_error");
       });

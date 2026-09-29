@@ -1,22 +1,17 @@
 <section class="hero" aria-labelledby="hero-heading">
   <div class="container hero-grid">
-    <div>
-      <p class="eyebrow">{{NAME}} · Open 24 hours</p>
+    <div class="hero-copy">
+      <p class="eyebrow">Open 24 hours · Lee County, FL</p>
       <h1 id="hero-heading">Septic Tank Pumping <span class="h1-sub">in Lehigh Acres, FL</span></h1>
-      <ul class="hero-tagline" aria-label="Fast, professional, local">
-        <li>Fast</li><li>Professional</li><li>Local</li>
-      </ul>
-      <p class="hero-lead">Slow drains, a gurgling toilet or a tank that's years overdue? We pump and clean residential septic tanks across Lehigh Acres, and we're open 24 hours. Call any time and you'll get a straight answer on when we can be there.</p>
+      <p class="hero-tagline">Reliable equipment. Professional service. Local response.</p>
+      <p class="hero-lead">{{NAME}} pumps and cleans residential septic tanks across Lehigh Acres and nearby Lee County, and handles backups day or night. Call and you'll get a straight answer on when we can be there.</p>
       <div class="hero-ctas">
-        <a class="btn btn-call" href="tel:{{TEL}}" data-track="call_click" data-loc="hero">{{i:phone}} Call {{PHONE}}</a>
-        <a class="btn btn-ghost" href="#request" data-track="request_click" data-loc="hero">Request Service</a>
+        {{call:hero}}
+        {{quote:hero}}
       </div>
-      <p class="hero-note">Sewage backing up right now? We answer 24/7. Call, don't wait on a form.</p>
+      <p class="hero-note">{{i:zap}} Sewage backing up right now? We answer 24/7. Call instead of using the form.</p>
     </div>
-    <figure class="hero-visual">
-      <img src="/assets/truck-illustration.svg" width="640" height="340" alt="Illustration of a septic vacuum pump truck" fetchpriority="high">
-      <figcaption><strong>Pump-outs · Backups · Tank locating</strong><span>Lehigh Acres &amp; Lee County</span></figcaption>
-    </figure>
+    {{HERO_MEDIA}}
   </div>
 </section>
 
@@ -31,6 +26,8 @@
   </div>
 </section>
 
+{{TRUST_STATS}}
+
 <section class="section section-alt" id="services" aria-labelledby="services-heading">
   <div class="container">
     <div class="section-head">
@@ -41,12 +38,12 @@
     <div class="service-grid">
       <article class="service-card is-link">
         <span class="icon">{{i:drop}}</span>
-        <h3><a href="/septic-tank-pumping-lehigh-acres/">Septic Tank Pumping</a></h3>
-        <p>Routine pump-outs (also called septic tank cleaning) that remove the sludge and scum layers before they reach your drain field.</p>
+        <h3><a href="/septic-tank-pumping-lehigh-acres/">Septic Tank Pumping &amp; Cleaning</a></h3>
+        <p>Routine pump-outs, also called septic tank cleaning, that remove the sludge and scum layers before they reach your drain field.</p>
         <span class="more" aria-hidden="true">How pumping works {{i:arrow}}</span>
       </article>
       <article class="service-card is-link is-urgent">
-        <span class="tag">Urgent</span>
+        <span class="tag">24/7</span>
         <span class="icon">{{i:zap}}</span>
         <h3><a href="/emergency-septic-service-lehigh-acres/">Emergency Septic Service</a></h3>
         <p>Sewage coming up in a tub or floor drain, or toilets that won't flush anywhere in the house. What to do right now, and when to call.</p>
@@ -58,32 +55,33 @@
         <p>Lids get buried under sod, pavers and landscaping. We find the tank so it can be opened, pumped and marked for next time.</p>
         <span class="more" aria-hidden="true">Finding your tank {{i:arrow}}</span>
       </article>
-      <article class="service-card is-plain">
+    </div>
+    <div class="service-minor">
+      <div>
         <span class="icon">{{i:wrench}}</span>
-        <h3>Septic Repairs</h3>
-        <p>When pumping shows a problem with a part of the system, we'll explain what we found and whether a repair makes sense. <a href="tel:{{TEL}}" data-track="call_click" data-loc="repairs_card">Call to talk it through</a>.</p>
-      </article>
-      <article class="service-card is-plain">
+        <p><strong>Septic repairs.</strong> When pumping shows a problem with part of the system, we'll explain what we found and whether a repair makes sense. <a href="tel:{{TEL}}" data-track="call_click" data-loc="repairs_card">Call to talk it through</a>.</p>
+      </div>
+      <div>
         <span class="icon">{{i:users}}</span>
-        <h3>Full System Replacement</h3>
-        <p>We don't push replacements. When a system truly can't be saved, we'll refer you to a trusted partner for the replacement work.</p>
-      </article>
-      <article class="service-card is-plain">
+        <p><strong>Full system replacement.</strong> We don't push replacements. When a system truly can't be saved, we'll refer you to a trusted partner for the work.</p>
+      </div>
+      <div>
         <span class="icon">{{i:clipboard}}</span>
-        <h3>Not sure what you need?</h3>
-        <p>Describe what's happening and we'll tell you whether it sounds like a full tank or something else. <a href="#request">Send a request</a>.</p>
-      </article>
+        <p><strong>Not sure what you need?</strong> Describe what's happening and we'll tell you whether it sounds like a full tank or something else. <a href="#quote">Request a quote</a>.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section" id="why" aria-labelledby="why-heading">
   <div class="container split">
-    <div>
+    <div class="split-intro">
       <p class="eyebrow">Why Xpress</p>
       <h2 id="why-heading">A Lehigh Acres septic company that keeps it simple</h2>
-      <p class="section-lead">Most people only think about their septic tank when something goes wrong. Here's what you can expect when you call us.</p>
-      <p style="margin-top:24px"><a class="btn btn-dark" href="tel:{{TEL}}" data-track="call_click" data-loc="why_section">{{i:phone}} {{PHONE}}</a></p>
+      <p class="section-lead">Your septic system shouldn't be a guessing game. Here's what you can expect when you call {{NAME}}.</p>
+      <div class="hero-ctas on-light">
+        {{call:why_section}}
+      </div>
     </div>
     <ul class="reasons">
       <li><span class="num">{{i:pin}}</span><div><h3>Focused on Lehigh Acres</h3><p>We concentrate on one area instead of covering half of Florida, which makes it easier to fit you into the day's route.</p></div></li>
@@ -95,23 +93,7 @@
   </div>
 </section>
 
-<section class="section section-dark" id="process" aria-labelledby="process-heading">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">How it works</p>
-      <h2 id="process-heading">What happens when your tank is pumped</h2>
-      <p class="section-lead">For a routine residential pump-out, here's what to expect from first call to last hose.</p>
-    </div>
-    <ol class="steps">
-      <li><h3>You call or send a request</h3><p>Tell us where the property is, what's going on and when the tank was last pumped, if you know.</p></li>
-      <li><h3>We find and open the tank</h3><p>We locate the lid, dig it out if it's buried, and open the tank. Tell us about gates, pets or sprinkler lines ahead of time.</p></li>
-      <li><h3>The tank is pumped</h3><p>The vacuum hose runs from the truck to the tank and removes the liquid, sludge and the floating scum layer.</p></li>
-      <li><h3>We look at the condition</h3><p>With the tank empty we can see things you can't see when it's full, such as the inlet and outlet and how fast water is coming back in.</p></li>
-      <li><h3>The area is left clean</h3><p>The lid goes back on, the hose is packed up and the yard is left the way we found it.</p></li>
-      <li><h3>You get our recommendations</h3><p>We tell you what we noticed and roughly when the tank should be pumped again.</p></li>
-    </ol>
-  </div>
-</section>
+{{GALLERY_SECTION}}
 
 <section class="section section-alt" id="signs" aria-labelledby="signs-heading">
   <div class="container">
@@ -125,13 +107,38 @@
       <li>{{i:wind}}<div><strong>Sewage odors</strong><span>A rotten-egg smell inside, or outside near the tank or drain field.</span></div></li>
       <li>{{i:waves}}<div><strong>Gurgling plumbing</strong><span>Toilets or drains that gurgle when other fixtures run, or when the washer drains.</span></div></li>
       <li>{{i:rain}}<div><strong>Standing water or soggy grass</strong><span>Wet spots or unusually green grass over the tank or drain field, especially in dry weather.</span></div></li>
-      <li>{{i:alert}}<div><strong>Backups</strong><span>Wastewater coming up in the lowest drains, like a shower or tub.</span></div></li>
+      <li>{{i:alert}}<div><strong>Backups</strong><span>Wastewater coming up in the lowest drains, like a shower or tub. See <a href="/emergency-septic-service-lehigh-acres/">what to do during a septic backup</a>.</span></div></li>
       <li>{{i:calendar}}<div><strong>Overdue maintenance</strong><span>No pump-out in the last three to five years, or you just bought the home and have no records.</span></div></li>
     </ul>
     <div class="callout">
       <p>If sewage is already coming up into the house, stop running water and call us right away.</p>
-      <a class="btn btn-dark btn-sm" href="tel:{{TEL}}" data-track="call_click" data-loc="signs_callout">{{i:phone}} {{PHONE}}</a>
+      {{call:signs_callout}}
     </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="process" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 id="process-heading">Septic pumping in three simple steps</h2>
+      <p class="section-lead">For a routine residential pump-out, here's what to expect from first call to last hose.</p>
+    </div>
+    <ol class="steps steps-3">
+      <li>
+        <h3>You call or request a quote</h3>
+        <p>Tell us where the property is, what's going on and when the tank was last pumped, if you know. Mention gates, pets or sprinkler lines so there are no surprises.</p>
+      </li>
+      <li>
+        <h3>We find, open and pump the tank</h3>
+        <p>We locate the lid and dig it out if it's buried. The vacuum hose runs from the truck to the tank and removes the liquid, the sludge and the floating scum layer.</p>
+      </li>
+      <li>
+        <h3>You get clear findings</h3>
+        <p>With the tank empty we can see the inlet, the outlet and whether water keeps flowing back in. The lid goes back on, the yard is left the way we found it, and we tell you what we noticed and roughly when to pump again.</p>
+      </li>
+    </ol>
+    <p class="steps-more">Want the full detail? Read <a href="/septic-tank-pumping-lehigh-acres/">how septic tank pumping works, step by step</a>.</p>
   </div>
 </section>
 
@@ -140,19 +147,26 @@
     <div class="prose">
       <p class="eyebrow">Lehigh Acres</p>
       <h2 id="local-heading">Septic ownership in Lehigh Acres: what's different here</h2>
-      <p>About 30% of Floridians rely on a septic system, roughly 2.6 million systems statewide.<sup><a href="#src-3" aria-label="Source 3">3</a></sup> Lehigh Acres is a large, mostly residential community in eastern Lee County. Much of it was laid out decades ago as individual home lots, and many homes here have their own septic system instead of central sewer. If yours does, pumping is part of owning the house, just like servicing the AC.</p>
+      <p class="prose-lead">About 30% of Floridians rely on a septic system, roughly 2.6 million systems statewide.<sup><a href="#src-3" aria-label="Source 3">3</a></sup> Lehigh Acres is a large, mostly residential community in eastern Lee County. Much of it was laid out decades ago as individual home lots, and many homes here have their own septic system instead of central sewer. If yours does, pumping is part of owning the house, just like servicing the AC.</p>
 
-      <h3>How often to pump</h3>
-      <p>The U.S. Environmental Protection Agency says household septic tanks are typically pumped every three to five years and inspected at least every three years.<sup><a href="#src-1" aria-label="Source 1">1</a></sup> The right interval for your home depends on tank size and how many people live there. A busy household or a garbage disposal shortens it.</p>
-
-      <h3>Rainy season and saturated ground</h3>
-      <p>Southwest Florida's summer rains can leave the ground around a drain field saturated for weeks. A drain field that's sitting in wet soil can't absorb water as well, so slow drains and gurgling often show up after heavy rain. If the area is flooded, the EPA advises against pumping until the water goes down, because an empty tank in saturated ground can shift or float.<sup><a href="#src-2" aria-label="Source 2">2</a></sup> We'll tell you if it makes sense to wait.</p>
-
-      <h3>Finding the tank</h3>
-      <p>It's common here for the lid to be buried under sod, pavers or landscaping, especially on older homes or after a sale. Knowing roughly where the tank is saves time on the day. If you don't know, we can <a href="/septic-tank-locating-lehigh-acres/">locate it</a>.</p>
-
-      <h3>Access for the truck</h3>
-      <p>The pump truck parks in the street or driveway and runs a hose to the tank. Let us know about locked gates, fences, dogs or anything the hose has to cross, so there are no surprises on the day.</p>
+      <div class="topic-grid">
+        <div class="topic">
+          <h3>{{i:calendar}} How often to pump</h3>
+          <p>The U.S. Environmental Protection Agency says household septic tanks are typically pumped every three to five years and inspected at least every three years.<sup><a href="#src-1" aria-label="Source 1">1</a></sup> The right interval depends on tank size and how many people live there. A busy household or a garbage disposal shortens it.</p>
+        </div>
+        <div class="topic">
+          <h3>{{i:rain}} Rainy season and saturated ground</h3>
+          <p>Southwest Florida's summer rains can leave the ground around a drain field saturated for weeks, so slow drains and gurgling often show up after heavy rain. If the area is flooded, the EPA advises against pumping until the water goes down, because an empty tank in saturated ground can shift or float.<sup><a href="#src-2" aria-label="Source 2">2</a></sup> We'll tell you if it makes sense to wait.</p>
+        </div>
+        <div class="topic">
+          <h3>{{i:search}} Finding the tank</h3>
+          <p>It's common here for the lid to be buried under sod, pavers or landscaping, especially on older homes or after a sale. Knowing roughly where the tank is saves time on the day. If you don't know, we offer <a href="/septic-tank-locating-lehigh-acres/">septic tank locating</a>.</p>
+        </div>
+        <div class="topic">
+          <h3>{{i:truck}} Access for the truck</h3>
+          <p>The pump truck parks in the street or driveway and runs a hose to the tank. Let us know about locked gates, fences, dogs or anything the hose has to cross.</p>
+        </div>
+      </div>
 
       <h3>Florida septic rules and permits</h3>
       <p>Since July 2021 the Florida Department of Environmental Protection has been responsible for the state's septic rules, but permits and inspections are still handled by each county's health department.<sup><a href="#src-3" aria-label="Source 3">3</a></sup> In Lehigh Acres, that means the Florida Department of Health in Lee County. Routine pumping doesn't need a permit. Installing, replacing or repairing a system usually does.</p>
@@ -166,18 +180,20 @@
         </ol>
       </div>
     </div>
-    <aside class="fact-panel" aria-label="Service area">
-      <h3>Where we work</h3>
+    <aside class="fact-panel" id="service-area" aria-labelledby="area-heading">
+      <h3 id="area-heading">Service area</h3>
       <dl>
         <dt>Primary area</dt>
         <dd>Lehigh Acres, FL</dd>
         <dt>Also serving</dt>
-        <dd>Nearby Lee County communities when the route allows. Ask when you call.</dd>
+        <dd>Nearby Lee County and Southwest Florida communities when the route allows. Ask when you call.</dd>
+        <dt>Hours</dt>
+        <dd>{{HOURS}}</dd>
         <dt>Phone</dt>
         <dd><a href="tel:{{TEL}}" data-track="call_click" data-loc="area_panel">{{PHONE}}</a></dd>
       </dl>
-      <a class="btn btn-call" href="tel:{{TEL}}" data-track="call_click" data-loc="area_panel_btn">{{i:phone}} Call Now</a>
-      <a class="btn btn-ghost" href="#request">Request Service</a>
+      {{call:area_panel_btn}}
+      {{quote:area_panel}}
     </aside>
   </div>
 </section>
@@ -197,7 +213,11 @@
       </details>
       <details class="faq-item">
         <summary>How much does septic tank pumping cost in Lehigh Acres?</summary>
-        <div class="faq-answer"><p>It depends on the size of the tank, how easy it is to reach, whether the lid has to be found and dug up, and how long it's been since the last pump-out. Call with your address and anything you know about the tank, and we'll quote it for you. See <a href="/septic-tank-pumping-lehigh-acres/#cost">what affects the price</a>.</p></div>
+        <div class="faq-answer"><p>It depends on the size of the tank, how easy it is to reach, whether the lid has to be found and dug up, and how long it's been since the last pump-out. Call with your address and anything you know about the tank, and we'll quote it for you. See <a href="/septic-tank-pumping-lehigh-acres/#cost">what affects the cost of septic pumping</a>.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What happens during a septic pump-out?</summary>
+        <div class="faq-answer"><p>We locate and open the tank, run the vacuum hose from the truck, and remove the liquid, sludge and scum. With the tank empty we check the inlet and outlet, close it back up and tell you what we saw. Read the <a href="/septic-tank-pumping-lehigh-acres/">step-by-step septic pumping guide</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>How long does septic pumping take?</summary>
@@ -208,12 +228,24 @@
         <div class="faq-answer"><p>The usual signs are slow drains throughout the house, gurgling toilets, sewage odors, soggy ground over the tank or drain field, and backups in the lowest drains. The only way to know for sure is to open the tank and look.</p></div>
       </details>
       <details class="faq-item">
-        <summary>Can you locate my septic tank?</summary>
-        <div class="faq-answer"><p>Yes. Many lids in Lehigh Acres are buried under grass or landscaping. We use where the plumbing leaves the house, any records or permits you have, and careful probing to find the tank so it can be opened and pumped.</p></div>
+        <summary>Can heavy rain cause septic problems?</summary>
+        <div class="faq-answer"><p>Yes. When the ground around the drain field is soaked, water from the tank has nowhere to go, so drains can slow down or back up even if the tank isn't especially full. If the yard is flooded, pumping may need to wait until the water goes down. See <a href="/emergency-septic-service-lehigh-acres/">septic backups after heavy rain</a>.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What are the warning signs of a septic backup?</summary>
+        <div class="faq-answer"><p>Gurgling in one drain when another runs, several fixtures draining slowly at once, sewage smells, and water coming up in the lowest drain in the house (usually a shower or tub). If wastewater is already coming up, stop using water and call.</p></div>
       </details>
       <details class="faq-item">
         <summary>What should I do if my septic tank backs up?</summary>
-        <div class="faq-answer"><p>Stop using water: no flushing, laundry, dishwasher or showers. Keep people and pets away from any sewage, and don't try to open the tank yourself. Then call us at {{PHONE}}.</p></div>
+        <div class="faq-answer"><p>Stop using water: no flushing, laundry, dishwasher or showers. Keep people and pets away from any sewage, and don't try to open the tank yourself. Then call us at {{PHONE}}. Our <a href="/emergency-septic-service-lehigh-acres/">emergency septic service page</a> has the full checklist.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you offer 24-hour emergency septic service?</summary>
+        <div class="faq-answer"><p>Yes. {{NAME}} is open 24 hours a day, 7 days a week. Call {{PHONE}} any time, including nights and weekends. Septic backups get priority.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Can you locate my septic tank?</summary>
+        <div class="faq-answer"><p>Yes. Many lids in Lehigh Acres are buried under grass or landscaping. We use where the plumbing leaves the house, any records or permits you have, and careful probing to find the tank so it can be opened and pumped. More on <a href="/septic-tank-locating-lehigh-acres/">how we locate buried septic tanks</a>.</p></div>
       </details>
       <details class="faq-item">
         <summary>Do I need to be home during the pump-out?</summary>
@@ -222,10 +254,6 @@
       <details class="faq-item">
         <summary>How quickly can service be scheduled?</summary>
         <div class="faq-answer"><p>It depends on the day's route. We offer same-day service when the schedule allows, and backups get priority. Calling is the fastest way to find out what's open.</p></div>
-      </details>
-      <details class="faq-item">
-        <summary>Are you open 24 hours?</summary>
-        <div class="faq-answer"><p>Yes. Xpress Septic Tank Pumping is open 24 hours a day, 7 days a week. Call {{PHONE}} any time, including nights and weekends. Septic backups get priority.</p></div>
       </details>
       <details class="faq-item">
         <summary>What is the new septic law in Florida?</summary>
@@ -239,4 +267,4 @@
   </div>
 </section>
 
-{{REQUEST_SECTION}}
+{{QUOTE_SECTION}}
