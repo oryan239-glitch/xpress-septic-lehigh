@@ -65,9 +65,9 @@ const PAGES = [
     src: "index.html",
     out: "index.html",
     path: "/",
-    title: "Septic Tank Pumping Lehigh Acres FL | Open 24 Hours | Xpress Septic Pumping",
+    title: "Septic Tank Pumping Lehigh Acres FL | Xpress Septic Tank Pumping",
     description:
-      "Septic tank pumping, cleaning and 24-hour emergency septic service in Lehigh Acres, FL. Xpress Septic Pumping is open 24 hours. Call (239) 506-1163.",
+      "Septic tank pumping, cleaning and 24-hour emergency septic service in Lehigh Acres, FL. Xpress Septic Tank Pumping is open 24 hours. Call (239) 506-1163.",
     nav: "home",
     home: true,
   },
@@ -75,7 +75,7 @@ const PAGES = [
     src: "septic-tank-pumping.html",
     out: "septic-tank-pumping-lehigh-acres/index.html",
     path: SERVICES.pumping.path,
-    title: "Septic Tank Pumping & Cleaning in Lehigh Acres, FL | Cost & FAQ",
+    title: "Septic Tank Pumping & Cleaning in Lehigh Acres | Xpress Septic Tank Pumping",
     description:
       "Septic tank pumping and cleaning in Lehigh Acres, FL: what affects the cost, how often to pump in Florida and what happens on the day. Open 24 hours: (239) 506-1163.",
     nav: "pumping",
@@ -86,9 +86,9 @@ const PAGES = [
     src: "emergency-septic-service.html",
     out: "emergency-septic-service-lehigh-acres/index.html",
     path: SERVICES.emergency.path,
-    title: "24-Hour Emergency Septic Pumping in Lehigh Acres, FL | Xpress Septic Pumping",
+    title: "24-Hour Emergency Septic Lehigh Acres | Xpress Septic Tank Pumping",
     description:
-      "Septic backing up in Lehigh Acres? Xpress Septic Pumping is open 24 hours. What to do right now, common causes and how we respond. Call (239) 506-1163.",
+      "Septic backing up in Lehigh Acres? Xpress Septic Tank Pumping is open 24 hours. What to do right now, common causes and how we respond. Call (239) 506-1163.",
     nav: "emergency",
     service: SERVICES.emergency,
     crumb: "Emergency Septic Service",
@@ -97,9 +97,9 @@ const PAGES = [
     src: "septic-tank-locating.html",
     out: "septic-tank-locating-lehigh-acres/index.html",
     path: SERVICES.locating.path,
-    title: "Septic Tank Locating in Lehigh Acres, FL | Records & Buried Lids",
+    title: "Septic Tank Locating in Lehigh Acres, FL | Xpress Septic Tank Pumping",
     description:
-      "Can't find your septic tank? Where to find septic tank location records in Lee County, clues to look for, and how Xpress Septic Pumping locates buried lids.",
+      "Can't find your septic tank? Where to find septic tank location records in Lee County, clues to look for, and how Xpress Septic Tank Pumping locates buried lids.",
     nav: "locating",
     service: SERVICES.locating,
     crumb: "Septic Tank Locating",
@@ -108,8 +108,8 @@ const PAGES = [
     src: "privacy.html",
     out: "privacy/index.html",
     path: "/privacy/",
-    title: "Privacy Policy | Xpress Septic Pumping",
-    description: "How Xpress Septic Pumping handles information sent through this website's quote form or by phone.",
+    title: "Privacy Policy | Xpress Septic Tank Pumping",
+    description: "How Xpress Septic Tank Pumping handles information sent through this website's quote form or by phone.",
     nav: "",
     crumb: "Privacy Policy",
   },
@@ -117,8 +117,8 @@ const PAGES = [
     src: "404.html",
     out: "404.html",
     path: "/404.html",
-    title: "Page Not Found | Xpress Septic Pumping",
-    description: "This page doesn't exist. Call Xpress Septic Pumping at (239) 506-1163 or go back to the homepage.",
+    title: "Page Not Found | Xpress Septic Tank Pumping",
+    description: "This page doesn't exist. Call Xpress Septic Tank Pumping at (239) 506-1163 or go back to the homepage.",
     nav: "",
     noindex: true,
   },
@@ -129,7 +129,7 @@ const brandMark = (lazy) =>
   `<img class="brand-mark" src="/assets/logo-mark.svg" alt="" width="36" height="36"${lazy ? ' loading="lazy"' : ""}>`;
 const brand = (current, lazy) => `<a class="brand" href="/"${current ? ' aria-current="page"' : ""}>
       ${brandMark(lazy)}
-      <span class="brand-name"><strong>Xpress Septic Pumping</strong><span>Lehigh Acres, FL</span></span>
+      <span class="brand-name"><strong>${SITE.name}</strong><span>Lehigh Acres, FL</span></span>
     </a>`;
 
 const callBtn = (loc, label = `Call ${SITE.phoneDisplay}`, cls = "btn btn-call") =>
@@ -171,7 +171,7 @@ function googleLinkItems(loc) {
   const review = SITE.gbpReviewUrl
     ? `<li><a href="${SITE.gbpReviewUrl}" target="_blank" rel="noopener" data-track="review_click" data-loc="${loc}">Leave a Google review</a></li>`
     : "";
-  return `<li><a href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="${loc}">View us on Google</a></li>${review}`;
+  return `<li><a href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="${loc}">View ${SITE.name} on Google</a></li>${review}`;
 }
 
 function footer() {
@@ -338,6 +338,7 @@ function quoteSection() {
         <li>${icon("check")}<span>Lehigh Acres and nearby Lee County</span></li>
         <li>${icon("check")}<span>${SITE.hours}</span></li>
       </ul>
+      <p class="contact-email">Prefer email? <a href="mailto:${SITE.email}">${SITE.email}</a></p>
     </div>
     <div class="form-card">
       <form id="quote-form" novalidate>
@@ -384,7 +385,7 @@ function quoteSection() {
         </div>
         <button class="btn btn-dark btn-block form-submit" type="submit">Send Quote Request</button>
         <p class="form-note">Septic backing up right now? Please call ${SITE.phoneDisplay} instead. See our <a href="/privacy/">privacy policy</a>.</p>
-        <p class="form-banner error" id="form-error" role="alert" hidden>Your request didn't go through. Please call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a> or try again.</p>
+        <p class="form-banner error" id="form-error" role="alert" hidden>Your request didn't go through. Please call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a>, email <a href="mailto:${SITE.email}">${SITE.email}</a>, or try again.</p>
       </form>
       <div class="form-success" id="form-success" tabindex="-1" role="status" hidden>
         ${icon("check")}
@@ -413,7 +414,7 @@ function businessNode() {
     telephone: SITE.phoneSchema,
     email: SITE.email,
     logo: `${SITE.url}/assets/apple-touch-icon.png`,
-    image: `${SITE.url}/assets/og-xpress-septic-pumping.jpg`,
+    image: `${SITE.url}/assets/og-xpress-septic-tank-pumping.jpg`,
     description:
       "Septic tank pumping, septic tank cleaning, 24-hour emergency septic service and septic tank locating for homes in Lehigh Acres, Florida.",
     address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: "US" },
@@ -525,7 +526,7 @@ function render(page) {
   const body = fill(readFileSync(join(root, "src/pages", page.src), "utf8"));
   if (/\{\{[^}]+\}\}/.test(body)) throw new Error(`Unfilled placeholder in ${page.src}: ${body.match(/\{\{[^}]+\}\}/)[0]}`);
   const canonical = `${SITE.url}${page.path}`;
-  const ogImage = `${SITE.url}/assets/og-xpress-septic-pumping.jpg`;
+  const ogImage = `${SITE.url}/assets/og-xpress-septic-tank-pumping.jpg`;
   const indexing = page.noindex
     ? '<meta name="robots" content="noindex, follow">'
     : `<meta name="robots" content="index, follow, max-image-preview:large">

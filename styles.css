@@ -173,7 +173,8 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .brand-mark { width: 36px; height: 36px; flex: none; }
 .brand-name { display: flex; flex-direction: column; line-height: 1.05; }
-.brand-name strong { font-size: 1.02rem; font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; }
+.brand-name strong { font-size: 1.02rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
+@media (max-width: 400px) { .brand-name strong { font-size: 0.94rem; } .brand-name span { display: none; } }
 .brand-name span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; color: var(--on-ink-muted); margin-top: 3px; }
 
 .primary-nav { display: none; }
@@ -656,6 +657,8 @@ a:hover { text-decoration-thickness: 2px; }
 .checks { list-style: none; margin: 0; padding: 0; }
 .checks li { display: flex; gap: 10px; padding: 6px 0; color: var(--on-ink); }
 .checks svg { width: 20px; height: 20px; flex: none; color: var(--brand); margin-top: 4px; }
+.contact-email { margin: 18px 0 0; }
+.contact-email a { color: #fff; font-weight: 650; overflow-wrap: anywhere; }
 
 .form-card {
   background: #fff;
@@ -782,7 +785,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .site-footer a:hover { color: #fff; text-decoration: underline; }
 .footer-brand .brand { margin-bottom: 14px; }
 .footer-brand p { max-width: 30em; }
-.footer-phone { display: inline-block; font-size: 1.35rem; font-weight: 800; color: #fff !important; margin: 0 0 6px; }
+.footer-phone { display: inline-block; font-size: 1.35rem; font-weight: 800; color: #fff !important; margin: 0 0 6px; padding: 5px 0; }
 .footer-bottom {
   margin-top: 40px;
   padding-top: 20px;

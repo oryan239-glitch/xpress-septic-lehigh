@@ -1,5 +1,5 @@
 // ============================================================================
-//  Xpress Septic Pumping — business facts and trust assets
+//  Xpress Septic Tank Pumping — business facts and trust assets
 //  This is the ONE place to update the business identity, Google Business
 //  Profile links, reviews, photos and credentials. Then run:
 //      node tools/build-pages.mjs
@@ -10,10 +10,9 @@
 
 export default {
   // ---- Identity (must match the Google Business Profile exactly) ----------
-  name: "Xpress Septic Pumping",
-  // Earlier name, matching the domain. Used only as schema alternateName so
-  // Google connects the domain with the brand. Set to "" to drop it.
-  alternateName: "Xpress Septic Tank Pumping",
+  name: "Xpress Septic Tank Pumping",
+  // Optional schema alternateName. Leave "" so only one business name exists.
+  alternateName: "",
   url: "https://xpressseptictankpumpinglehighacres.com",
   phoneDisplay: "(239) 506-1163",
   phoneTel: "+12395061163",
