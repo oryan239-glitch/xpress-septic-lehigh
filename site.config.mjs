@@ -47,6 +47,13 @@ export default {
   // Generate files with: node tools/build-photos.mjs  (originals go in photos/)
   // Each entry: { name: "xpress-truck-side", width: 1600, height: 1066,
   //               widths: [480, 800, 1200, 1600], alt: "…", caption: "…" }
-  heroPhoto: null,
+  heroPhoto: {
+    name: "xpress-truck-crew",
+    width: 800,
+    height: 516,
+    widths: [480, 800],
+    alt: "Xpress Septic Tank Pumping vacuum truck and crew at a residential job",
+    caption: "Our pump truck on a residential job",
+  },
   gallery: [],
 };
