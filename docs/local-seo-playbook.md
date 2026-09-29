@@ -40,7 +40,7 @@ Also worth doing: set up **Bing Webmaster Tools** by importing from Search Conso
 
 **Phone and website:** (239) 506-1163, and `https://xpressseptictankpumpinglehighacres.com/`. Consider adding the homepage URL with UTM tags (`?utm_source=google&utm_medium=organic&utm_campaign=gbp`) so GBP traffic shows up separately in analytics.
 
-**Hours:** list real hours. Only mark 24 hours if the phone is actually answered around the clock.
+**Hours:** **Open 24 hours**, all 7 days. This matches the website and its structured data. Keep holiday hours updated if anything changes.
 
 **Services:** add each one with a short description:
 - Septic tank pumping
@@ -49,10 +49,7 @@ Also worth doing: set up **Bing Webmaster Tools** by importing from Search Conso
 - Septic tank locating
 - Septic repairs, only if you do them yourself
 
-**Description** (750 characters max, plain and factual):
-> Xpress Septic Tank Pumping pumps residential septic tanks in Lehigh Acres, FL and nearby Lee County. We handle routine pump-outs, septic backups and finding buried tank lids. Call (239) 506-1163 and we'll give you a straight answer on when we can be there, including same-day when the schedule allows. After every pump-out we tell you what we saw in the tank and when it should be pumped next.
-
-Edit the same-day line if it's no longer true.
+**Description** (750 characters max, plain and factual): use the ready-to-paste version in [keyword-map.md](keyword-map.md). It matches the site's wording and the 24-hour hours.
 
 **Photos** have the biggest effect on conversions. Upload real photos only; never AI-generated ones.
 - Logo: `assets/apple-touch-icon.png`, or a larger export of `assets/logo-mark.svg`
@@ -138,6 +135,7 @@ The site pushes these events to `dataLayer` / `gtag` (see `script.js`):
 
 ## 7. What to do next, in priority order
 
+0. Fix the branded search problem: Google Maps currently shows a different company when people search "Xpress Septic Tank Pumping". See [keyword-map.md](keyword-map.md).
 1. Connect the GBP URL and review link on the website.
 2. Replace the illustration with real truck photos (see README).
 3. Get 10+ genuine reviews in the first 60 days.

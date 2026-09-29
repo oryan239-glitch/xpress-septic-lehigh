@@ -30,6 +30,7 @@ export const SITE = {
   gbpRating: null,       // e.g. 4.9
   gbpReviewCount: null,  // e.g. 37
   bookingUrl: "/quote/",
+  hours: "Open 24 hours, 7 days a week",
   year: new Date().getFullYear(),
 };
 
@@ -96,18 +97,18 @@ const PAGES = [
     src: "index.html",
     out: "index.html",
     path: "/",
-    title: "Septic Tank Pumping Lehigh Acres, FL | Xpress Septic Tank Pumping",
+    title: "Septic Tank Pumping Lehigh Acres FL | Open 24 Hours | Xpress Septic",
     description:
-      "Septic tank pumping in Lehigh Acres, FL. Xpress Septic Tank Pumping handles routine pump-outs, septic backups and buried-lid locating. Call (239) 506-1163.",
+      "Septic tank pumping, cleaning and 24-hour emergency septic service in Lehigh Acres, FL. Xpress Septic Tank Pumping is open 24 hours. Call (239) 506-1163.",
     nav: "home",
   },
   {
     src: "septic-tank-pumping.html",
     out: "septic-tank-pumping-lehigh-acres/index.html",
     path: SERVICES.pumping.path,
-    title: "Septic Tank Pumping & Cleaning in Lehigh Acres, FL | Xpress",
+    title: "Septic Tank Pumping & Cleaning in Lehigh Acres, FL | Cost & FAQ",
     description:
-      "Routine septic tank pumping and cleaning for Lehigh Acres homes: how often to pump, what happens on the day, warning signs and what it costs. Call (239) 506-1163.",
+      "Septic tank pumping and cleaning in Lehigh Acres, FL: what affects the cost, how often to pump in Florida and what happens on the day. Open 24 hours: (239) 506-1163.",
     nav: "pumping",
     service: SERVICES.pumping,
     crumb: "Septic Tank Pumping",
@@ -116,9 +117,9 @@ const PAGES = [
     src: "emergency-septic-service.html",
     out: "emergency-septic-service-lehigh-acres/index.html",
     path: SERVICES.emergency.path,
-    title: "Emergency Septic Service & Backups in Lehigh Acres, FL | Xpress",
+    title: "24-Hour Emergency Septic Pumping in Lehigh Acres, FL | Xpress",
     description:
-      "Sewage backing up in Lehigh Acres? What to do right now, what causes septic backups and how Xpress Septic Tank Pumping responds. Call (239) 506-1163.",
+      "Septic backing up in Lehigh Acres? Xpress Septic Tank Pumping is open 24 hours. What to do right now, common causes and how we respond. Call (239) 506-1163.",
     nav: "emergency",
     service: SERVICES.emergency,
     crumb: "Emergency Septic Service",
@@ -127,9 +128,9 @@ const PAGES = [
     src: "septic-tank-locating.html",
     out: "septic-tank-locating-lehigh-acres/index.html",
     path: SERVICES.locating.path,
-    title: "Septic Tank Locating in Lehigh Acres, FL | Find Buried Lids | Xpress",
+    title: "Septic Tank Locating in Lehigh Acres, FL | Records & Buried Lids",
     description:
-      "Can't find your septic tank lid? How Xpress Septic Tank Pumping locates buried septic tanks in Lehigh Acres, what records to check first and how to mark it for next time.",
+      "Can't find your septic tank? Where to find septic tank location records in Lee County, clues to look for, and how Xpress Septic Tank Pumping locates buried lids.",
     nav: "locating",
     service: SERVICES.locating,
     crumb: "Septic Tank Locating",
@@ -150,7 +151,7 @@ function header(nav) {
   const cur = (k) => (nav === k ? ' aria-current="page"' : "");
   const links = [
     ["pumping", SERVICES.pumping.path, "Septic Pumping"],
-    ["emergency", SERVICES.emergency.path, "Emergency"],
+    ["emergency", SERVICES.emergency.path, "24/7 Emergency"],
     ["locating", SERVICES.locating.path, "Tank Locating"],
     ["faq", "/#faq", "FAQ"],
     ["contact", "/#request", "Request Service"],
@@ -166,7 +167,7 @@ function header(nav) {
     <nav class="primary-nav" aria-label="Main">
       <ul>${li}</ul>
     </nav>
-    <a class="header-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header"><small>Call now</small><strong>${SITE.phoneDisplay}</strong></a>
+    <a class="header-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header"><small>Open 24 hours</small><strong>${SITE.phoneDisplay}</strong></a>
     <a class="header-call-icon" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="header_mobile">${icon("phone")}<span class="visually-hidden">Call ${SITE.phoneDisplay}</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
       <svg class="icon-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg>
@@ -197,7 +198,8 @@ function footer() {
           <img class="brand-mark" src="/assets/logo-mark.svg" alt="" width="38" height="38" loading="lazy">
           <span class="brand-name"><strong>Xpress Septic</strong><span>Tank Pumping</span></span>
         </a>
-        <p>${SITE.name} provides septic tank pumping for homes in Lehigh Acres, Florida, and nearby Lee County communities.</p>
+        <p>${SITE.name} provides septic tank pumping, cleaning and emergency septic service for homes in Lehigh Acres, Florida, and nearby Lee County communities.</p>
+        <p><strong>${SITE.hours}</strong></p>
         <a class="footer-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="footer">${SITE.phoneDisplay}</a>
         <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
       </div>
@@ -238,7 +240,7 @@ function requestSection() {
     <div>
       <p class="eyebrow">Request service</p>
       <h2 id="request-heading">Need septic service in Lehigh Acres?</h2>
-      <p class="section-lead">Calling is the fastest way to get on the schedule. If you can't talk right now, send the form and we'll call you back.</p>
+      <p class="section-lead">We're open 24 hours, and calling is the fastest way to get on the schedule. If you can't talk right now, send the form and we'll call you back.</p>
       <a class="big-call" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="request_section">
         ${icon("phone")}
         <span><small>Call ${SITE.name}</small><strong>${SITE.phoneDisplay}</strong></span>
@@ -247,6 +249,7 @@ function requestSection() {
         <li>${icon("check")}<span>Routine pump-outs and septic backups</span></li>
         <li>${icon("check")}<span>Help finding buried tank lids</span></li>
         <li>${icon("check")}<span>Lehigh Acres and nearby Lee County</span></li>
+        <li>${icon("check")}<span>Open 24 hours, 7 days a week</span></li>
       </ul>
     </div>
     <div class="form-card">
@@ -339,6 +342,12 @@ function reviewsSection() {
 }
 
 /* ================= Structured data ================= */
+const ALL_DAY = {
+  "@type": "OpeningHoursSpecification",
+  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  opens: "00:00",
+  closes: "23:59",
+};
 function businessNode() {
   const node = {
     "@type": "HomeAndConstructionBusiness",
@@ -350,7 +359,8 @@ function businessNode() {
     logo: `${SITE.url}/assets/apple-touch-icon.png`,
     image: `${SITE.url}/assets/og-xpress-septic-lehigh-acres.jpg`,
     description:
-      "Septic tank pumping, septic backup response and septic tank locating for homes in Lehigh Acres, Florida.",
+      "Septic tank pumping, septic tank cleaning, 24-hour emergency septic service and septic tank locating for homes in Lehigh Acres, Florida.",
+    openingHoursSpecification: [ALL_DAY],
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.city,
@@ -361,7 +371,7 @@ function businessNode() {
       { "@type": "City", name: "Lehigh Acres, Florida", sameAs: "https://en.wikipedia.org/wiki/Lehigh_Acres,_Florida" },
       { "@type": "AdministrativeArea", name: "Lee County, Florida", sameAs: "https://en.wikipedia.org/wiki/Lee_County,_Florida" },
     ],
-    knowsAbout: ["Septic tank pumping", "Septic tank cleaning", "Septic system backups", "Septic tank locating"],
+    knowsAbout: ["Septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Emergency septic service", "Septic system backups", "Septic tank locating"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Septic services",
@@ -437,6 +447,7 @@ function jsonLd(page, body) {
       url: pageUrl,
       provider: { "@id": `${SITE.url}/#business` },
       areaServed: { "@type": "City", name: "Lehigh Acres, Florida" },
+      hoursAvailable: ALL_DAY,
     });
   }
   const faqs = extractFaq(body);
