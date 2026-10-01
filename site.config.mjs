@@ -31,9 +31,9 @@ export default {
   // "Ask for reviews" link from the Business Profile dashboard (g.page/r/…/review).
   gbpReviewUrl: "",
   // Copy from the live profile only. Both must be set for the rating to show.
-  // Last checked on the live profile: 2026-10-01. Update when it changes.
+  // Last checked on the live profile: 2026-10-01 (7 reviews). Update when it changes.
   gbpRating: "5.0",
-  gbpReviewCount: 5,
+  gbpReviewCount: 7,
 
   // Genuine Google review excerpts, copied word for word from the profile.
   // { author: "First name + initial", text: "…", date: "2026-10", rating: 5 }
