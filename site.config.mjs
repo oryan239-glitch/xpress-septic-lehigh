@@ -25,12 +25,15 @@ export default {
 
   // ---- Google Business Profile -------------------------------------------
   // Paste the profile's share link (Google Maps → your listing → Share → Copy link).
-  gbpUrl: "",
+  gbpUrl: "https://share.google/f8W3xBO4rIHRu5H44",
+  // Permanent Google Maps URL for the same listing (CID). Used in schema sameAs/hasMap.
+  gbpMapsUrl: "https://maps.google.com/?cid=9164737309997358183",
   // "Ask for reviews" link from the Business Profile dashboard (g.page/r/…/review).
   gbpReviewUrl: "",
   // Copy from the live profile only. Both must be set for the rating to show.
-  gbpRating: null,       // e.g. 4.9
-  gbpReviewCount: null,  // e.g. 37
+  // Last checked on the live profile: 2026-10-01. Update when it changes.
+  gbpRating: "5.0",
+  gbpReviewCount: 5,
 
   // Genuine Google review excerpts, copied word for word from the profile.
   // { author: "First name + initial", text: "…", date: "2026-10", rating: 5 }

@@ -180,7 +180,7 @@ function footer() {
     <div class="footer-grid">
       <div class="footer-brand">
         ${brand(false, true)}
-        <p>Septic tank pumping, septic tank cleaning, emergency septic service and septic tank locating for homes in Lehigh Acres and nearby Lee County, Florida.</p>
+        <p>Residential and commercial septic tank pumping, septic tank cleaning, emergency septic service and septic tank locating in Lehigh Acres and nearby Lee County, Florida.</p>
         <a class="footer-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="footer">${SITE.phoneDisplay}</a>
         <p class="footer-meta">${SITE.hours}<br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
       </div>
@@ -257,6 +257,11 @@ function trustStats() {
   if (t.jobsCompleted) items.push([t.jobsCompleted, "jobs completed"]);
   if (t.license) items.push(["Licensed", esc(t.license)]);
   if (!items.length) return "";
+  if (items.length === 1 && SITE.gbpRating && SITE.gbpUrl) {
+    return `<section class="rating-strip" aria-label="Google rating">
+  <div class="container"><a href="${SITE.gbpUrl}" target="_blank" rel="noopener" data-track="gbp_click" data-loc="rating_strip"><span class="stars" aria-hidden="true">★★★★★</span> <strong>${SITE.gbpRating}</strong> from ${SITE.gbpReviewCount} Google reviews <span class="rating-more">Read reviews ${icon("arrow")}</span></a></div>
+</section>`;
+  }
   return `<section class="stats" aria-label="${SITE.name} at a glance">
   <div class="container"><dl class="stats-list">${items
     .map(([v, l]) => `<div><dt>${l}</dt><dd>${v}</dd></div>`)
@@ -361,6 +366,7 @@ function quoteSection() {
             <select id="service" name="service" required aria-describedby="service-error">
               <option value="">Choose one…</option>
               <option>Septic tank pumping / cleaning</option>
+              <option>Commercial septic pumping</option>
               <option>Septic backup / emergency</option>
               <option>Find my septic tank</option>
               <option>Septic repair</option>
@@ -416,13 +422,13 @@ function businessNode() {
     logo: `${SITE.url}/assets/apple-touch-icon.png`,
     image: `${SITE.url}/assets/og-xpress-septic-tank-pumping.jpg`,
     description:
-      "Septic tank pumping, septic tank cleaning, 24-hour emergency septic service and septic tank locating for homes in Lehigh Acres, Florida.",
+      "Residential and commercial septic tank pumping, septic tank cleaning, septic repair, 24-hour emergency septic service and septic tank locating in Lehigh Acres, Florida.",
     address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: "US" },
     areaServed: [
       { "@type": "City", name: "Lehigh Acres, Florida", sameAs: "https://en.wikipedia.org/wiki/Lehigh_Acres,_Florida" },
       { "@type": "AdministrativeArea", name: "Lee County, Florida", sameAs: "https://en.wikipedia.org/wiki/Lee_County,_Florida" },
     ],
-    knowsAbout: ["Septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Emergency septic service", "Septic system backups", "Septic tank locating"],
+    knowsAbout: ["Septic tank pumping", "Residential septic tank pumping", "Commercial septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Septic repair", "Emergency septic service", "Septic system backups", "Septic tank locating"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Septic services",
@@ -431,9 +437,10 @@ function businessNode() {
   };
   if (SITE.alternateName) node.alternateName = SITE.alternateName;
   if (SITE.open24h) node.openingHoursSpecification = [ALL_DAY];
-  if (SITE.gbpUrl) {
-    node.sameAs = [SITE.gbpUrl];
-    node.hasMap = SITE.gbpUrl;
+  const gbpCanonical = SITE.gbpMapsUrl || SITE.gbpUrl;
+  if (gbpCanonical) {
+    node.sameAs = [gbpCanonical];
+    node.hasMap = gbpCanonical;
   }
   // No aggregateRating: Google treats ratings a business marks up about itself as
   // self-serving and ignores them. The rating is shown visibly on the page instead.

@@ -874,6 +874,14 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .stats-list dt { font-size: 0.88rem; color: var(--muted); }
 .stats-list dd { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
 
+/* ---------- Rating strip (when the Google rating is the only stat) ---------- */
+.rating-strip { background: var(--paper); border-bottom: 1px solid var(--line); }
+.rating-strip a { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; min-height: 52px; padding: 10px 0; color: var(--muted); text-decoration: none; font-size: 0.97rem; }
+.rating-strip strong { color: var(--text); font-size: 1.05rem; }
+.rating-more { display: inline-flex; align-items: center; gap: 4px; color: var(--brand-strong); font-weight: 700; }
+.rating-more svg { width: 16px; height: 16px; }
+.rating-strip a:hover .rating-more { text-decoration: underline; }
+
 /* ---------- Gallery (renders only when real photos exist) ---------- */
 .gallery { display: grid; gap: 14px; }
 @media (min-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
