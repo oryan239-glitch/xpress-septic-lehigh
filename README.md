@@ -1,4 +1,4 @@
-# Xpress Septic Tank Pumping — website
+# Rapid Septic Tank Pumping — website
 
 Live site: https://xpressseptictankpumpinglehighacres.com (GitHub Pages, custom domain via `CNAME`, HTTPS enforced).
 
@@ -28,7 +28,7 @@ Then rebuild: `node tools/build-pages.mjs`, commit and push.
 1. Put originals in `photos/` (not published).
 2. Run `node tools/build-photos.mjs`. This creates AVIF/WebP/JPEG at 480/800/1200/1600 px in `assets/img/` and strips GPS/EXIF data.
 3. Add an entry to `heroPhoto` or `gallery` in `site.config.mjs`, e.g.
-   `{ name: "xpress-truck-side", width: 1600, height: 1066, widths: [480, 800, 1200, 1600], alt: "Xpress Septic Tank Pumping vacuum truck at a home in Lehigh Acres", caption: "Our truck on a Lehigh Acres pump-out" }`
+   `{ name: "xpress-truck-side", width: 1600, height: 1066, widths: [480, 800, 1200, 1600], alt: "Rapid Septic Tank Pumping vacuum truck at a home in Lehigh Acres", caption: "Our truck on a Lehigh Acres pump-out" }`
 4. Rebuild.
 
 ## Layout

@@ -7,7 +7,7 @@ Researched 28 Sep 2026 from Google Autocomplete (477 suggestions from 23 septic 
 - **Map pack:** almost every top result uses the primary category **Septic system service**, and most show **Open 24 hours**. People search "open now", "24 hour" and "24/7" constantly, which suits a 24-hour business.
 - **People also ask:** *How much does it cost to pump a septic tank in Florida?* · *What is the average cost of pumping out a septic tank?* · *What is the new law on septic tanks in Florida?* · *Can a septic tank go 20 years without being pumped?*
 - **Related searches:** "septic tank pumping lehigh acres fl **prices**", "**cheapest** septic tank pumping lehigh acres fl", "…**reviews**". Cost is the #1 question.
-- **Branded search problem:** searching Google Maps for **"Xpress Septic Tank Pumping Lehigh Acres" returns a different company**, *Express Septic Tank Pumping*. Xpress's own profile did not appear. See the action items below.
+- **Branded search problem:** searching Google Maps for **"Rapid Septic Tank Pumping Lehigh Acres" returns a different company**, *Express Septic Tank Pumping*. Rapid's own profile did not appear. See the action items below.
 
 ## Keyword → where it's targeted
 
@@ -38,7 +38,7 @@ Researched 28 Sep 2026 from Google Autocomplete (477 suggestions from 23 septic 
 
 | Field | Set it to |
 |---|---|
-| Name | Xpress Septic Tank Pumping (must match the website exactly) |
+| Name | Rapid Septic Tank Pumping (must match the website exactly) |
 | Primary category | Septic system service |
 | Hours | Open 24 hours, Monday–Sunday |
 | Phone | (239) 506-1163 |
@@ -48,7 +48,7 @@ Researched 28 Sep 2026 from Google Autocomplete (477 suggestions from 23 septic 
 
 **Description** (paste as-is; about 560 characters):
 
-> Xpress Septic Tank Pumping is a septic company serving Lehigh Acres, FL and nearby Lee County. We're open 24 hours for septic tank pumping, septic tank cleaning and emergency septic service, including backups at night and on weekends. We also locate buried septic tanks when the lid can't be found. Call (239) 506-1163 and we'll give you a straight answer on when we can be there, and after every pump-out we tell you what we saw in the tank and when it should be pumped next.
+> Rapid Septic Tank Pumping is a septic company serving Lehigh Acres, FL and nearby Lee County. We're open 24 hours for septic tank pumping, septic tank cleaning and emergency septic service, including backups at night and on weekends. We also locate buried septic tanks when the lid can't be found. Call (239) 506-1163 and we'll give you a straight answer on when we can be there, and after every pump-out we tell you what we saw in the tank and when it should be pumped next.
 
 **First 6 weekly posts** (each linking to the matching page):
 1. We're open 24 hours: septic backups at night or on the weekend. Links to the emergency page.
@@ -60,7 +60,7 @@ Researched 28 Sep 2026 from Google Autocomplete (477 suggestions from 23 septic 
 
 ## Action items from this research
 
-1. **Find out why Xpress's profile isn't showing** for its own name. Check that the profile is verified and published, and that the name is spelled exactly "Xpress Septic Tank Pumping", matching the website. Then send me the profile's share link so the site can connect to it.
+1. **Find out why Rapid's profile isn't showing** for its own name. Check that the profile is verified and published, and that the name is spelled exactly "Rapid Septic Tank Pumping", matching the website. Then send me the profile's share link so the site can connect to it.
 2. Set hours to **Open 24 hours** on the profile (the website now says 24/7).
 3. Confirm the primary category is **Septic system service**.
 4. Use the service names above so the profile and website say the same thing.

@@ -1,5 +1,5 @@
 // ============================================================================
-//  Xpress Septic Tank Pumping — business facts and trust assets
+//  Rapid Septic Tank Pumping — business facts and trust assets
 //  This is the ONE place to update the business identity, Google Business
 //  Profile links, reviews, photos and credentials. Then run:
 //      node tools/build-pages.mjs
@@ -10,7 +10,7 @@
 
 export default {
   // ---- Identity (must match the Google Business Profile exactly) ----------
-  name: "Xpress Septic Tank Pumping",
+  name: "Rapid Septic Tank Pumping",
   // Optional schema alternateName. Leave "" so only one business name exists.
   alternateName: "",
   url: "https://xpressseptictankpumpinglehighacres.com",
@@ -55,7 +55,7 @@ export default {
     width: 800,
     height: 516,
     widths: [480, 800],
-    alt: "Xpress Septic Tank Pumping vacuum truck and crew at a residential job",
+    alt: "Rapid Septic Tank Pumping vacuum truck and crew at a residential job",
     caption: "Our pump truck on a residential job",
   },
   gallery: [],
