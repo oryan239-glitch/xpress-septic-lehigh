@@ -1,4 +1,4 @@
-/* Xpress Septic Tank Pumping — site script (no dependencies) */
+/* Rapid Septic Tank Pumping — site script (no dependencies) */
 (function () {
   "use strict";
 

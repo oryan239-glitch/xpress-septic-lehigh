@@ -29,7 +29,7 @@ const bg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" hei
 <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1a31"/><stop offset="1" stop-color="#0f2442"/></linearGradient></defs>
 <rect width="1200" height="630" fill="url(#b)"/><rect width="1200" height="630" fill="url(#a)"/>
 <g font-family="Segoe UI, Arial, Helvetica, sans-serif" fill="#fff">
-<text x="164" y="118" font-size="34" font-weight="800">Xpress Septic Tank Pumping</text>
+<text x="164" y="118" font-size="34" font-weight="800">Rapid Septic Tank Pumping</text>
 <text x="72" y="238" font-size="64" font-weight="800" letter-spacing="-1.5">Septic Tank Pumping</text>
 <text x="72" y="314" font-size="64" font-weight="800" letter-spacing="-1.5" fill="#2dd4bf">in Lehigh Acres, FL</text>
 <text x="72" y="392" font-size="28" font-weight="600" fill="#b5c3d6">Fast • Professional • Local</text>
