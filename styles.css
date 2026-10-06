@@ -734,6 +734,33 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .form-note { margin: 12px 0 0; font-size: 0.87rem; color: var(--muted); }
+.sms-consent {
+  margin: 14px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.sms-consent label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  cursor: pointer;
+}
+.sms-consent input[type="checkbox"] {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--brand-strong);
+}
+.sms-consent a { color: var(--brand-strong); text-decoration: underline; }
+
 .form-banner { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; }
 .form-banner.error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
 .form-banner.error a { color: var(--danger); }
