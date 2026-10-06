@@ -109,9 +109,27 @@ const PAGES = [
     out: "privacy/index.html",
     path: "/privacy/",
     title: "Privacy Policy | Rapid Septic Tank Pumping",
-    description: "How Rapid Septic Tank Pumping handles information sent through this website's quote form or by phone.",
+    description: "Privacy Policy for Express Septic Tank Pumping LLC / Xpress. Canonical URL: /privacy-policy/.",
+    nav: "",
+    crumb: "Privacy",
+  },
+  {
+    src: "privacy-policy.html",
+    out: "privacy-policy/index.html",
+    path: "/privacy-policy/",
+    title: "Privacy Policy | Express Septic / Xpress",
+    description: "Privacy Policy for Express Septic Tank Pumping LLC / Xpress Septic Tank Pumping, including SMS consent and mobile information sharing practices.",
     nav: "",
     crumb: "Privacy Policy",
+  },
+  {
+    src: "terms.html",
+    out: "terms/index.html",
+    path: "/terms/",
+    title: "SMS Terms & Conditions | Express Septic / Xpress",
+    description: "SMS Terms & Conditions for Express Septic Tank Pumping LLC / Xpress customer text messages. STOP/HELP, message frequency, and privacy.",
+    nav: "",
+    crumb: "SMS Terms",
   },
   {
     src: "404.html",
@@ -205,7 +223,7 @@ function footer() {
     </div>
     <div class="footer-bottom">
       <p>&copy; ${YEAR} ${SITE.name}. Serving Lehigh Acres and Lee County, Florida.</p>
-      <p><a href="/privacy/">Privacy Policy</a></p>
+      <p><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms/">SMS Terms</a></p>
     </div>
   </div>
 </footer>
@@ -390,7 +408,7 @@ function quoteSection() {
           </div>
         </div>
         <button class="btn btn-dark btn-block form-submit" type="submit">Send Quote Request</button>
-        <p class="form-note">Septic backing up right now? Please call ${SITE.phoneDisplay} instead. See our <a href="/privacy/">privacy policy</a>.</p>
+        <p class="form-note">Septic backing up right now? Please call ${SITE.phoneDisplay} instead. See our <a href="/privacy-policy/">privacy policy</a> and <a href="/terms/">SMS terms</a>.</p>
         <p class="form-banner error" id="form-error" role="alert" hidden>Your request didn't go through. Please call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a>, email <a href="mailto:${SITE.email}">${SITE.email}</a>, or try again.</p>
       </form>
       <div class="form-success" id="form-success" tabindex="-1" role="status" hidden>
