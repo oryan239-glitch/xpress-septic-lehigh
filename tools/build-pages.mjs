@@ -222,7 +222,7 @@ function footer() {
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; ${YEAR} ${SITE.name}. Serving Lehigh Acres and Lee County, Florida.</p>
+      <p>&copy; ${YEAR} EXPRESS SEPTIC TANK PUMPING LLC (dba Xpress Septic Tank Pumping). Serving Lehigh Acres and Lee County, Florida.</p>
       <p><a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms/">SMS Terms</a></p>
     </div>
   </div>
@@ -406,6 +406,12 @@ function quoteSection() {
             <label for="message">Message <span class="opt">(optional)</span></label>
             <textarea id="message" name="message" rows="3" placeholder="What's happening, when it was last pumped, where the lid is…"></textarea>
           </div>
+        </div>
+        <div class="sms-consent">
+          <label for="sms_consent">
+            <input id="sms_consent" name="sms_consent" type="checkbox" value="yes">
+            <span>I agree to receive text messages from Express Septic Tank Pumping LLC (also operating as Xpress / Rapid Septic Tank Pumping) about appointments, scheduling, missed calls, and customer service at the phone number provided. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help or call (239) 451-3261. Consent is not a condition of purchase. SMS consent is not shared with third parties. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">SMS Terms</a>.</span>
+          </label>
         </div>
         <button class="btn btn-dark btn-block form-submit" type="submit">Send Quote Request</button>
         <p class="form-note">Septic backing up right now? Please call ${SITE.phoneDisplay} instead. See our <a href="/privacy-policy/">privacy policy</a> and <a href="/terms/">SMS terms</a>.</p>
