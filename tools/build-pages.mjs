@@ -58,7 +58,22 @@ const SERVICES = {
   pumping: { path: "/septic-tank-pumping-lehigh-acres/", label: "Septic Tank Pumping", serviceType: "Septic tank pumping" },
   emergency: { path: "/emergency-septic-service-lehigh-acres/", label: "Emergency Septic Service", serviceType: "Emergency septic service" },
   locating: { path: "/septic-tank-locating-lehigh-acres/", label: "Septic Tank Locating", serviceType: "Septic tank locating" },
+  inspection: { path: "/septic-tank-inspection/", label: "Septic Tank Inspection", serviceType: "Septic tank inspection", area: "SWFL" },
+  repair: { path: "/septic-tank-repair/", label: "Septic Tank Repair", serviceType: "Septic tank repair", area: "SWFL" },
+  drainfield: { path: "/drain-field-repair/", label: "Drain Field Repair", serviceType: "Drain field repair", area: "SWFL" },
+  grease: { path: "/grease-trap-lift-station-pumping/", label: "Grease Trap & Lift Station Pumping", serviceType: "Grease trap and lift station pumping", area: "SWFL" },
 };
+const CITIES = [
+  ["fort-myers", "Fort Myers", "Fort_Myers,_Florida"],
+  ["naples", "Naples", "Naples,_Florida"],
+  ["cape-coral", "Cape Coral", "Cape_Coral,_Florida"],
+  ["bonita-springs", "Bonita Springs", "Bonita_Springs,_Florida"],
+];
+const SWFL_AREAS = [
+  { "@type": "City", name: "Estero, Florida" },
+  { "@type": "City", name: "Lehigh Acres, Florida" },
+  ...CITIES.map(([, c]) => ({ "@type": "City", name: `${c}, Florida` })),
+];
 
 const PAGES = [
   {
@@ -104,6 +119,36 @@ const PAGES = [
     service: SERVICES.locating,
     crumb: "Septic Tank Locating",
   },
+  ...CITIES.map(([slug, c]) => ({
+    src: `city-${slug}.html`,
+    out: `septic-tank-pumping-${slug}-fl/index.html`,
+    path: `/septic-tank-pumping-${slug}-fl/`,
+    title: `Septic Tank Pumping ${c} FL | Rapid Septic Tank Pumping`,
+    description: `Septic tank pumping, septic tank cleaning and septic service in ${c}, FL from Rapid Septic Tank Pumping. Open 24 hours. Call (239) 506-1163.`,
+    nav: "",
+    service: { path: `/septic-tank-pumping-${slug}-fl/`, label: "Septic Tank Pumping", serviceType: "Septic tank pumping", cityName: c, wiki: slug },
+    crumb: `Septic Tank Pumping ${c}`,
+  })),
+  { src: "svc-septic-tank-inspection.html", out: "septic-tank-inspection/index.html", path: SERVICES.inspection.path,
+    title: "Septic Tank Inspection | Rapid Septic Tank Pumping",
+    description: "Septic tank inspection in Southwest Florida for home sales and peace of mind: what's checked and when to get one. Rapid Septic Tank Pumping: (239) 506-1163.",
+    nav: "", service: SERVICES.inspection, crumb: "Septic Tank Inspection" },
+  { src: "svc-septic-tank-repair.html", out: "septic-tank-repair/index.html", path: SERVICES.repair.path,
+    title: "Septic Tank Repair in SW Florida | Rapid Septic Tank Pumping",
+    description: "Septic tank repair in Southwest Florida: lids, risers, baffles and pipes. Signs your tank needs repair. Open 24 hours. Call Rapid Septic Tank Pumping at (239) 506-1163.",
+    nav: "", service: SERVICES.repair, crumb: "Septic Tank Repair" },
+  { src: "svc-drain-field-repair.html", out: "drain-field-repair/index.html", path: SERVICES.drainfield.path,
+    title: "Drain Field Repair in SW Florida | Rapid Septic Tank Pumping",
+    description: "Soggy yard, odors or slow drains after rain? Signs of drain field failure in Southwest Florida and how we diagnose it. Call (239) 506-1163.",
+    nav: "", service: SERVICES.drainfield, crumb: "Drain Field Repair" },
+  { src: "svc-grease-trap-lift-station-pumping.html", out: "grease-trap-lift-station-pumping/index.html", path: SERVICES.grease.path,
+    title: "Grease Trap & Lift Station Pumping | Rapid Septic Tank Pumping",
+    description: "Commercial grease trap pumping and lift station pumping in Southwest Florida. Open 24 hours. Call Rapid Septic Tank Pumping at (239) 506-1163.",
+    nav: "", service: SERVICES.grease, crumb: "Grease Trap & Lift Station Pumping" },
+  { src: "septic-tank-pumping-cost.html", out: "septic-tank-pumping-cost/index.html", path: "/septic-tank-pumping-cost/",
+    title: "Septic Tank Pumping Cost: $399.99+ | Rapid Septic Tank Pumping",
+    description: "Septic tank pumping cost: $399.99 for 1-3 bedrooms, $449.99 for 4 bedrooms, $499.99 for 5 bedrooms. What changes the price. Call (239) 506-1163.",
+    nav: "", crumb: "Septic Tank Pumping Cost" },
   {
     src: "privacy.html",
     out: "privacy/index.html",
@@ -209,6 +254,18 @@ function footer() {
           <li><a href="${SERVICES.pumping.path}">Septic tank cleaning</a></li>
           <li><a href="${SERVICES.emergency.path}">Emergency septic service</a></li>
           <li><a href="${SERVICES.locating.path}">Septic tank locating</a></li>
+          <li><a href="${SERVICES.inspection.path}">Septic tank inspection</a></li>
+          <li><a href="${SERVICES.repair.path}">Septic tank repair</a></li>
+          <li><a href="${SERVICES.drainfield.path}">Drain field repair</a></li>
+          <li><a href="${SERVICES.grease.path}">Grease trap &amp; lift station pumping</a></li>
+          <li><a href="/septic-tank-pumping-cost/">Septic tank pumping cost</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Service areas</h2>
+        <ul>
+          <li><a href="${SERVICES.pumping.path}">Lehigh Acres</a></li>
+          ${CITIES.map(([slug, c]) => `<li><a href="/septic-tank-pumping-${slug}-fl/">${c}</a></li>`).join("\n          ")}
         </ul>
       </div>
       <div>
@@ -451,6 +508,9 @@ function businessNode() {
     areaServed: [
       { "@type": "City", name: "Lehigh Acres, Florida", sameAs: "https://en.wikipedia.org/wiki/Lehigh_Acres,_Florida" },
       { "@type": "AdministrativeArea", name: "Lee County, Florida", sameAs: "https://en.wikipedia.org/wiki/Lee_County,_Florida" },
+      ...CITIES.map(([, c, w]) => ({ "@type": "City", name: `${c}, Florida`, sameAs: `https://en.wikipedia.org/wiki/${w}` })),
+      { "@type": "City", name: "Estero, Florida", sameAs: "https://en.wikipedia.org/wiki/Estero,_Florida" },
+      { "@type": "AdministrativeArea", name: "Collier County, Florida", sameAs: "https://en.wikipedia.org/wiki/Collier_County,_Florida" },
     ],
     knowsAbout: ["Septic tank pumping", "Residential septic tank pumping", "Commercial septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Septic repair", "Emergency septic service", "Septic system backups", "Septic tank locating"],
     hasOfferCatalog: {
@@ -513,11 +573,11 @@ function jsonLd(page, body) {
     const svc = {
       "@type": "Service",
       "@id": `${pageUrl}#service`,
-      name: `${page.service.label} in Lehigh Acres, FL`,
+      name: page.service.cityName ? `${page.service.label} in ${page.service.cityName}, FL` : page.service.area ? `${page.service.label} in Southwest Florida` : `${page.service.label} in Lehigh Acres, FL`,
       serviceType: page.service.serviceType,
       url: pageUrl,
       provider: { "@id": `${SITE.url}/#business` },
-      areaServed: { "@type": "City", name: "Lehigh Acres, Florida" },
+      areaServed: page.service.cityName ? { "@type": "City", name: `${page.service.cityName}, Florida` } : page.service.area ? SWFL_AREAS : { "@type": "City", name: "Lehigh Acres, Florida" },
     };
     if (SITE.open24h) svc.hoursAvailable = ALL_DAY;
     graph.push(svc);
