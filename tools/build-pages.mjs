@@ -246,6 +246,7 @@ function footer() {
         <p>Residential and commercial septic tank pumping, septic tank cleaning, emergency septic service and septic tank locating in Lehigh Acres and nearby Lee County, Florida.</p>
         <a class="footer-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="footer">${SITE.phoneDisplay}</a>
         <p class="footer-meta">${SITE.hours}<br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+        <p class="footer-sms">Text <strong>BOOK</strong> to <a href="sms:+12394513261?&amp;body=BOOK">(239) 451-3261</a> to get our online booking link. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy-policy/">Privacy Policy</a>.</p>
       </div>
       <div>
         <h2>Services</h2>
@@ -419,6 +420,10 @@ function quoteSection() {
         <li>${icon("check")}<span>${SITE.hours}</span></li>
       </ul>
       <p class="contact-email">Prefer email? <a href="mailto:${SITE.email}">${SITE.email}</a></p>
+      <div class="sms-opt-in" id="sms-opt-in">
+        <p class="sms-opt-in-title">Book by text</p>
+        <p><strong>Text BOOK to (239) 451-3261</strong> to get our online booking link. By texting BOOK, you agree to receive text messages from Express Septic Tank Pumping about your booking request. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for help, STOP to opt out. Consent is not a condition of purchase. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+      </div>
     </div>
     <div class="form-card">
       <form id="quote-form" novalidate>
