@@ -793,6 +793,38 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   color: var(--on-ink-muted);
 }
 .footer-sms a { color: var(--on-ink); }
+.express-operator-bar {
+  background: rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 0;
+}
+.express-operator {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--on-ink-muted);
+  text-align: center;
+}
+.express-operator a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.footer-express {
+  margin: 6px 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--on-ink-muted);
+}
+.footer-express a { color: #fff; font-weight: 650; text-decoration: underline; }
+.sms-opt-in-operator {
+  margin: 0 0 10px !important;
+  font-size: 0.9rem !important;
+  color: #fff !important;
+  font-weight: 650;
+}
+.sms-opt-in-operator a { color: #fff; text-decoration: underline; }
+
 
 
 .form-banner { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; }
