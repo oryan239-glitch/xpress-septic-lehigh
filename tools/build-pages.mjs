@@ -177,6 +177,16 @@ const PAGES = [
     crumb: "SMS Terms",
   },
   {
+    src: "quote.html",
+    out: "quote/index.html",
+    path: "/quote/",
+    title: "Request a Quote | Rapid Septic Tank Pumping",
+    description: "Request septic service or a quote from Rapid Septic Tank Pumping. Send your request online and we'll confirm your appointment. Call (239) 506-1163.",
+    nav: "",
+    crumb: "Request a Quote",
+    noindex: true,
+  },
+  {
     src: "404.html",
     out: "404.html",
     path: "/404.html",
@@ -435,6 +445,12 @@ function quoteSection() {
     <div class="form-card request-card">
       <h3>Request service or a quote</h3>
       <p class="form-intro">Send us your request and we'll confirm your appointment.</p>
+      <div class="sms-consent" id="sms-consent">
+        <label for="sms-consent-checkbox">
+          <input type="checkbox" id="sms-consent-checkbox" name="sms_consent" value="yes">
+          <span>I agree to receive text messages from Express Septic Tank Pumping LLC at the number provided about my quote, appointment scheduling, arrival times and service updates. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help, STOP to opt out. Consent is not a condition of purchase. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms/">SMS Terms</a>.</span>
+        </label>
+      </div>
       <iframe class="request-frame" src="https://book.servicem8.com/request_booking?uuid=019fca12-b6bf-721c-8a2b-41d89e1a1b5b" title="Request service or a quote" loading="lazy"></iframe>
       <a class="btn btn-dark btn-block request-open" href="https://book.servicem8.com/request_booking?uuid=019fca12-b6bf-721c-8a2b-41d89e1a1b5b" target="_blank" rel="noopener" data-track="request_click" data-loc="quote_section">Open the request form</a>
       <p class="form-note">Form not showing? Use the button above. Septic backing up right now? Please call <a href="tel:${SITE.phoneTel}">${SITE.phoneDisplay}</a> instead. See our <a href="/privacy-policy/">privacy policy</a> and <a href="/terms/">SMS terms</a>.</p>
