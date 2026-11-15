@@ -261,6 +261,7 @@ function footer() {
         <p>Residential and commercial septic tank pumping, septic tank cleaning, emergency septic service and septic tank locating in Lehigh Acres and nearby Lee County, Florida.</p>
         <a class="footer-phone" href="tel:${SITE.phoneTel}" data-track="call_click" data-loc="footer">${SITE.phoneDisplay}</a>
         <p class="footer-express">Operated by Express Septic Tank Pumping LLC · Text or call <a href="tel:+12394513261">(239) 451-3261</a></p>
+        <p class="footer-license">Work performed under FL Certified Plumbing Contractor Raymond F. Dibble, License <a href="https://www.myfloridalicense.com/wl11.asp?mode=0&amp;SID=&amp;brd=&amp;typ=" rel="noopener">#CFC020332</a>, licensed since 1981.</p>
         <p class="footer-meta">${SITE.hours}<br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
         <p class="footer-sms">Text <strong>BOOK</strong> to <a href="sms:+12394513261?&amp;body=BOOK">(239) 451-3261</a> to get our online booking link. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy-policy/">Privacy Policy</a>.</p>
       </div>

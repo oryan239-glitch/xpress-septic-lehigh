@@ -819,6 +819,15 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   color: var(--on-ink-muted);
 }
 .footer-express a { color: #fff; font-weight: 650; text-decoration: underline; }
+.footer-license {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--on-ink-muted);
+}
+.footer-license a { color: #fff; text-decoration: underline; }
+.license-block { padding-top: 48px; padding-bottom: 48px; }
+.license-block .section-head { margin-bottom: 0; }
 .sms-opt-in-operator {
   margin: 0 0 10px !important;
   font-size: 0.9rem !important;
