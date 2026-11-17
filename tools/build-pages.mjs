@@ -61,6 +61,7 @@ const SERVICES = {
   inspection: { path: "/septic-tank-inspection/", label: "Septic Tank Inspection", serviceType: "Septic tank inspection", area: "SWFL" },
   repair: { path: "/septic-tank-repair/", label: "Septic Tank Repair", serviceType: "Septic tank repair", area: "SWFL" },
   drainfield: { path: "/drain-field-repair/", label: "Drain Field Repair", serviceType: "Drain field repair", area: "SWFL" },
+  drainfieldReplacement: { path: "/drain-field-replacement/", label: "Drain Field Replacement", serviceType: "Drain field replacement", area: "SWFL" },
   grease: { path: "/grease-trap-lift-station-pumping/", label: "Grease Trap & Lift Station Pumping", serviceType: "Grease trap and lift station pumping", area: "SWFL" },
 };
 const CITIES = [
@@ -141,6 +142,10 @@ const PAGES = [
     title: "Drain Field Repair in SW Florida | Rapid Septic Tank Pumping",
     description: "Soggy yard, odors or slow drains after rain? Signs of drain field failure in Southwest Florida and how we diagnose it. Call (239) 506-1163.",
     nav: "", service: SERVICES.drainfield, crumb: "Drain Field Repair" },
+  { src: "svc-drain-field-replacement.html", out: "drain-field-replacement/index.html", path: SERVICES.drainfieldReplacement.path,
+    title: "Drain Field Replacement in SW Florida | Rapid Septic Tank Pumping",
+    description: "When a drain field has failed and can't be repaired, we replace it. Inspection first, repair when possible. Call Rapid Septic Tank Pumping at (239) 506-1163.",
+    nav: "", service: SERVICES.drainfieldReplacement, crumb: "Drain Field Replacement" },
   { src: "svc-grease-trap-lift-station-pumping.html", out: "grease-trap-lift-station-pumping/index.html", path: SERVICES.grease.path,
     title: "Grease Trap & Lift Station Pumping | Rapid Septic Tank Pumping",
     description: "Commercial grease trap pumping and lift station pumping in Southwest Florida. Open 24 hours. Call Rapid Septic Tank Pumping at (239) 506-1163.",
@@ -275,6 +280,7 @@ function footer() {
           <li><a href="${SERVICES.inspection.path}">Septic tank inspection</a></li>
           <li><a href="${SERVICES.repair.path}">Septic tank repair</a></li>
           <li><a href="${SERVICES.drainfield.path}">Drain field repair</a></li>
+          <li><a href="${SERVICES.drainfieldReplacement.path}">Drain field replacement</a></li>
           <li><a href="${SERVICES.grease.path}">Grease trap &amp; lift station pumping</a></li>
           <li><a href="/septic-tank-pumping-cost/">Septic tank pumping cost</a></li>
         </ul>
@@ -479,7 +485,7 @@ function businessNode() {
     logo: `${SITE.url}/assets/apple-touch-icon.png`,
     image: `${SITE.url}/assets/og-xpress-septic-tank-pumping.jpg`,
     description:
-      "Residential and commercial septic tank pumping, septic tank cleaning, septic repair, 24-hour emergency septic service and septic tank locating in Lehigh Acres, Florida.",
+      "Residential and commercial septic tank pumping, septic tank cleaning, septic repair, drain field repair and replacement, 24-hour emergency septic service and septic tank locating in Lehigh Acres, Florida.",
     address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: "US" },
     areaServed: [
       { "@type": "City", name: "Lehigh Acres, Florida", sameAs: "https://en.wikipedia.org/wiki/Lehigh_Acres,_Florida" },
@@ -488,7 +494,7 @@ function businessNode() {
       { "@type": "City", name: "Estero, Florida", sameAs: "https://en.wikipedia.org/wiki/Estero,_Florida" },
       { "@type": "AdministrativeArea", name: "Collier County, Florida", sameAs: "https://en.wikipedia.org/wiki/Collier_County,_Florida" },
     ],
-    knowsAbout: ["Septic tank pumping", "Residential septic tank pumping", "Commercial septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Septic repair", "Emergency septic service", "Septic system backups", "Septic tank locating"],
+    knowsAbout: ["Septic tank pumping", "Residential septic tank pumping", "Commercial septic tank pumping", "Septic tank cleaning", "Septic pump-outs", "Septic repair", "Drain field repair", "Drain field replacement", "Emergency septic service", "Septic system backups", "Septic tank locating"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Septic services",
