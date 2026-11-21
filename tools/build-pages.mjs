@@ -154,6 +154,48 @@ const PAGES = [
     title: "Septic Tank Pumping Cost: $399.99+ | Rapid Septic Tank Pumping",
     description: "Septic tank pumping cost: $399.99 for 1-3 bedrooms, $449.99 for 4 bedrooms, $499.99 for 5 bedrooms. What changes the price. Call (239) 506-1163.",
     nav: "", crumb: "Septic Tank Pumping Cost" },
+
+  { src: "first-time-septic-owner.html", out: "first-time-septic-owner-lehigh-acres/index.html", path: "/first-time-septic-owner-lehigh-acres/",
+    title: "First Time Owning a Septic Tank in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "New to a septic tank in Lehigh Acres? Confirm the house is on a tank, find records, and schedule a pump-out. From $399.99. Call (239) 506-1163.",
+    nav: "", crumb: "First-Time Septic Owner Guide" },
+  { src: "septic-guide-for-realtors.html", out: "septic-guide-for-lehigh-acres-realtors/index.html", path: "/septic-guide-for-lehigh-acres-realtors/",
+    title: "Septic Guide for Lehigh Acres Realtors | Rapid Septic Tank Pumping",
+    description: "A septic briefing for Realtors listing or selling Lehigh Acres homes: records, inspections, and timing around a contract. Call (239) 506-1163.",
+    nav: "", crumb: "Septic Guide for Realtors" },
+  { src: "buying-or-selling-home-with-septic.html", out: "buying-or-selling-a-home-with-a-septic-tank-lehigh-acres/index.html", path: "/buying-or-selling-a-home-with-a-septic-tank-lehigh-acres/",
+    title: "Buying or Selling a Lehigh Acres Home With a Septic Tank | Rapid Septic Tank Pumping",
+    description: "What buyers and sellers should do when a Lehigh Acres house has a septic tank. Inspections, pump-outs from $399.99. Call (239) 506-1163.",
+    nav: "", crumb: "Buying or Selling a Home" },
+  { src: "septic-for-builders-and-contractors.html", out: "septic-pumping-for-builders-and-contractors-lehigh-acres/index.html", path: "/septic-pumping-for-builders-and-contractors-lehigh-acres/",
+    title: "Septic Pumping for Builders and Contractors in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "Jobsite septic pumping, buried lids and inspections for builders and contractors in Lehigh Acres. Open 24 hours. Call (239) 506-1163.",
+    nav: "", crumb: "Builders and Contractors" },
+  { src: "septic-for-landlords.html", out: "septic-service-for-lehigh-acres-landlords/index.html", path: "/septic-service-for-lehigh-acres-landlords/",
+    title: "Septic Service for Lehigh Acres Landlords and Rentals | Rapid Septic Tank Pumping",
+    description: "Pump-outs between leases, tenant habits, and 24-hour backup service for Lehigh Acres rental homes. From $399.99. Call (239) 506-1163.",
+    nav: "", crumb: "Landlords and Rentals" },
+  { src: "drain-field-not-draining.html", out: "drain-field-not-draining-lehigh-acres/index.html", path: "/drain-field-not-draining-lehigh-acres/",
+    title: "Drain Field Not Draining in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "Wet or smelly yard over a Lehigh Acres drain field? We inspect first and repair when possible. Open 24 hours. Call (239) 506-1163.",
+    nav: "", crumb: "Drain Field Not Draining" },
+  { src: "septic-backup-in-the-house.html", out: "septic-backup-in-the-house-lehigh-acres/index.html", path: "/septic-backup-in-the-house-lehigh-acres/",
+    title: "What to Do When a Septic Tank Backs Up in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "Stop running water and call (239) 506-1163. Rapid is open 24 hours for a septic backup in a Lehigh Acres house.",
+    nav: "", crumb: "Septic Backup in the House" },
+  { src: "septic-maintenance-checklist.html", out: "septic-maintenance-checklist-lehigh-acres/index.html", path: "/septic-maintenance-checklist-lehigh-acres/",
+    title: "Lehigh Acres Septic Maintenance Checklist | Rapid Septic Tank Pumping",
+    description: "A short septic maintenance checklist for Lehigh Acres homes: pump-out dates, what not to flush, and when to call (239) 506-1163.",
+    nav: "", crumb: "Maintenance Checklist" },
+  { src: "hurricane-rainy-season-septic-prep.html", out: "hurricane-and-rainy-season-septic-prep-lehigh-acres/index.html", path: "/hurricane-and-rainy-season-septic-prep-lehigh-acres/",
+    title: "Hurricane and Rainy-Season Septic Prep in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "How to prep a Lehigh Acres septic tank for hurricane season and heavy rain. Pump before the yard floods. Call (239) 506-1163.",
+    nav: "", crumb: "Hurricane and Rainy-Season Prep" },
+  { src: "septic-for-property-managers.html", out: "septic-service-for-lehigh-acres-property-managers/index.html", path: "/septic-service-for-lehigh-acres-property-managers/",
+    title: "Septic Service for Lehigh Acres Property Managers | Rapid Septic Tank Pumping",
+    description: "Pump-out records, after-hours backups, and turnover inspections for property managers of Lehigh Acres homes. Call (239) 506-1163.",
+    nav: "", crumb: "Property Managers" },
+
   {
     src: "privacy.html",
     out: "privacy/index.html",
@@ -290,6 +332,21 @@ function footer() {
         <ul>
           <li><a href="${SERVICES.pumping.path}">Lehigh Acres</a></li>
           ${CITIES.map(([slug, c]) => `<li><a href="/septic-tank-pumping-${slug}-fl/">${c}</a></li>`).join("\n          ")}
+        </ul>
+      </div>
+      <div>
+        <h2>Guides</h2>
+        <ul>
+          <li><a href="/first-time-septic-owner-lehigh-acres/">First-time septic owner</a></li>
+          <li><a href="/septic-guide-for-lehigh-acres-realtors/">Guide for Realtors</a></li>
+          <li><a href="/buying-or-selling-a-home-with-a-septic-tank-lehigh-acres/">Buying or selling a home</a></li>
+          <li><a href="/septic-pumping-for-builders-and-contractors-lehigh-acres/">Builders and contractors</a></li>
+          <li><a href="/septic-service-for-lehigh-acres-landlords/">Landlords and rentals</a></li>
+          <li><a href="/septic-service-for-lehigh-acres-property-managers/">Property managers</a></li>
+          <li><a href="/drain-field-not-draining-lehigh-acres/">Drain field not draining</a></li>
+          <li><a href="/septic-backup-in-the-house-lehigh-acres/">Backup in the house</a></li>
+          <li><a href="/septic-maintenance-checklist-lehigh-acres/">Maintenance checklist</a></li>
+          <li><a href="/hurricane-and-rainy-season-septic-prep-lehigh-acres/">Hurricane and rainy-season prep</a></li>
         </ul>
       </div>
       <div>
