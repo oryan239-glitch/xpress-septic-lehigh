@@ -196,6 +196,48 @@ const PAGES = [
     description: "Pump-out records, after-hours backups, and turnover inspections for property managers of Lehigh Acres homes. Call (239) 506-1163.",
     nav: "", crumb: "Property Managers" },
 
+
+  { src: "septic-filter-cleaning.html", out: "septic-filter-cleaning-lehigh-acres/index.html", path: "/septic-filter-cleaning-lehigh-acres/",
+    title: "Septic Outlet Filters in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "Not every Lehigh Acres tank has an outlet filter. Ask Rapid to look at it on a pump-out. No standalone filter price. Call (239) 506-1163.",
+    nav: "", crumb: "Septic Filter Cleaning" },
+  { src: "why-we-pump-both-tanks.html", out: "why-we-pump-both-tanks-lehigh-acres/index.html", path: "/why-we-pump-both-tanks-lehigh-acres/",
+    title: "Why Inlet and Outlet Sides of a Lehigh Acres Tank Both Need Pumping | Rapid Septic Tank Pumping",
+    description: "Rapid empties sludge and scum, not just the liquid, and checks the inlet and outlet. Pump-outs from $399.99. Call (239) 506-1163.",
+    nav: "", crumb: "Inlet and Outlet Pumping" },
+  { src: "drain-field-dos-and-donts.html", out: "drain-field-dos-and-donts-lehigh-acres/index.html", path: "/drain-field-dos-and-donts-lehigh-acres/",
+    title: "Drain Field Do's and Don'ts in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "Keep oil and wet wipes out of the drains, use septic-safe toilet paper, go easy on bleach, and stay off the drain field. Call (239) 506-1163.",
+    nav: "", crumb: "Drain Field Do's and Don'ts" },
+  { src: "sewage-smell.html", out: "sewage-smell-in-yard-or-house-lehigh-acres/index.html", path: "/sewage-smell-in-yard-or-house-lehigh-acres/",
+    title: "Sewage Smell in a Lehigh Acres House or Yard | Rapid Septic Tank Pumping",
+    description: "A sewage odor in the house or yard is a reason to call Rapid, open 24 hours. Stop running water if a backup starts. Call (239) 506-1163.",
+    nav: "", crumb: "Sewage Smell" },
+  { src: "gurgling-and-slow-drains.html", out: "gurgling-and-slow-drains-lehigh-acres/index.html", path: "/gurgling-and-slow-drains-lehigh-acres/",
+    title: "Gurgling Pipes and Slow Drains in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "A gurgle or a slow drain can mean the tank needs to be opened. Rapid is open 24 hours. Call (239) 506-1163.",
+    nav: "", crumb: "Gurgling and Slow Drains" },
+  { src: "wet-spots-green-grass.html", out: "wet-spots-green-grass-over-drain-field-lehigh-acres/index.html", path: "/wet-spots-green-grass-over-drain-field-lehigh-acres/",
+    title: "Wet Spots or Green Grass Over a Lehigh Acres Drain Field | Rapid Septic Tank Pumping",
+    description: "A soft or extra-green strip over a Lehigh Acres drain field may be rain — or the field showing itself. Call Rapid at (239) 506-1163.",
+    nav: "", crumb: "Wet Spots or Green Grass" },
+  { src: "septic-alarm-going-off.html", out: "septic-alarm-going-off-lehigh-acres/index.html", path: "/septic-alarm-going-off-lehigh-acres/",
+    title: "When a Septic Alarm Is Going Off in Lehigh Acres | Rapid Septic Tank Pumping",
+    description: "If a septic or lift-station alarm is on, ease off water and call Rapid, open 24 hours, at (239) 506-1163. Lift station pumping is quoted on the call.",
+    nav: "", crumb: "Septic Alarm" },
+  { src: "cant-find-septic-tank-lid.html", out: "cant-find-septic-tank-lid-lehigh-acres/index.html", path: "/cant-find-septic-tank-lid-lehigh-acres/",
+    title: "Can't Find the Septic Tank Lid in Lehigh Acres? | Rapid Septic Tank Pumping",
+    description: "Don't dig test holes. Rapid locates buried septic lids, usually on the same visit as a pump-out, quoted on the call. Call (239) 506-1163.",
+    nav: "", crumb: "Can't Find the Tank Lid" },
+  { src: "garbage-disposal-and-water-softener.html", out: "garbage-disposal-and-water-softener-septic-lehigh-acres/index.html", path: "/garbage-disposal-and-water-softener-septic-lehigh-acres/",
+    title: "Garbage Disposals and Water Softeners on a Lehigh Acres Septic Tank | Rapid Septic Tank Pumping",
+    description: "A disposal adds solids and a softener can add recharge water. You may need a pump-out sooner. From $399.99. Call (239) 506-1163.",
+    nav: "", crumb: "Garbage Disposal and Water Softener" },
+  { src: "pools-irrigation-and-septic.html", out: "pools-irrigation-and-septic-lehigh-acres/index.html", path: "/pools-irrigation-and-septic-lehigh-acres/",
+    title: "Pools and Irrigation Near a Lehigh Acres Septic System | Rapid Septic Tank Pumping",
+    description: "Don't build or drain a pool on the drain field, and don't soak it with sprinklers. Call Rapid at (239) 506-1163 before you break ground.",
+    nav: "", crumb: "Pools and Irrigation" },
+
   {
     src: "privacy.html",
     out: "privacy/index.html",
@@ -347,6 +389,16 @@ function footer() {
           <li><a href="/septic-backup-in-the-house-lehigh-acres/">Backup in the house</a></li>
           <li><a href="/septic-maintenance-checklist-lehigh-acres/">Maintenance checklist</a></li>
           <li><a href="/hurricane-and-rainy-season-septic-prep-lehigh-acres/">Hurricane and rainy-season prep</a></li>
+          <li><a href="/septic-filter-cleaning-lehigh-acres/">Outlet filters</a></li>
+          <li><a href="/why-we-pump-both-tanks-lehigh-acres/">Inlet and outlet pumping</a></li>
+          <li><a href="/drain-field-dos-and-donts-lehigh-acres/">Drain field do's and don'ts</a></li>
+          <li><a href="/sewage-smell-in-yard-or-house-lehigh-acres/">Sewage smell</a></li>
+          <li><a href="/gurgling-and-slow-drains-lehigh-acres/">Gurgling and slow drains</a></li>
+          <li><a href="/wet-spots-green-grass-over-drain-field-lehigh-acres/">Wet spots or green grass</a></li>
+          <li><a href="/septic-alarm-going-off-lehigh-acres/">Septic alarm</a></li>
+          <li><a href="/cant-find-septic-tank-lid-lehigh-acres/">Can't find the tank lid</a></li>
+          <li><a href="/garbage-disposal-and-water-softener-septic-lehigh-acres/">Disposals and softeners</a></li>
+          <li><a href="/pools-irrigation-and-septic-lehigh-acres/">Pools and irrigation</a></li>
         </ul>
       </div>
       <div>
@@ -633,8 +685,28 @@ function jsonLd(page, body) {
 }
 
 /* ================= Template ================= */
+
+/* Wet-wipes photo on the drain-field do's-and-don'ts page.
+   Leave src empty until ORyan's photo is added. Do not use stock or AI images.
+   Set src (and optional cap) then rebuild to publish the figure site-wide on that page. */
+const DRAIN_WIPES = {
+  src: "",
+  alt: "Used wet wipes that belong in the trash, not in a Lehigh Acres septic tank",
+  cap: "",
+};
+
+function drainWipesFigure() {
+  const comment = "<!-- WET-WIPES PHOTO SLOT: used on the drain-field do's-and-don'ts page through drainWipesFigure() in tools/build-pages.mjs. Set DRAIN_WIPES.src to publish ORyan's photo. Do not use stock or AI images. -->";
+  if (DRAIN_WIPES.src) {
+    const cap = DRAIN_WIPES.cap ? `<figcaption>${esc(DRAIN_WIPES.cap)}</figcaption>` : "";
+    return `${comment}<figure class="shot drain-wipes-photo"><img src="${DRAIN_WIPES.src}" alt="${esc(DRAIN_WIPES.alt)}" width="1200" height="800" loading="lazy">${cap}</figure>`;
+  }
+  return `${comment}<template id="drain-wipes-photo-slot" data-slot="oryan-wet-wipes"><figure class="shot drain-wipes-photo"><img alt="${esc(DRAIN_WIPES.alt)}" width="1200" height="800" loading="lazy"><figcaption></figcaption></figure></template>`;
+}
+
 function fill(html) {
   return html
+    .replaceAll("{{DRAIN_WIPES_FIGURE}}", drainWipesFigure())
     .replaceAll("{{PHONE}}", SITE.phoneDisplay)
     .replaceAll("{{TEL}}", SITE.phoneTel)
     .replaceAll("{{NAME}}", SITE.name)

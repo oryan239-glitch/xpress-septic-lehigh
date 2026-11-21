@@ -1044,3 +1044,8 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   .site-header, .action-bar, .form-card, .nav-toggle { display: none !important; }
   .hero, .section-dark { background: #fff !important; color: #000 !important; }
 }
+
+/* Published only when DRAIN_WIPES.src is set in tools/build-pages.mjs. The empty slot is a hidden <template>, not a visible box. */
+.shot.drain-wipes-photo{margin:0 0 1.4rem;max-width:40rem}
+.shot.drain-wipes-photo img{display:block;width:100%;height:auto;border-radius:8px}
+.shot.drain-wipes-photo figcaption{margin-top:.5rem;font-size:.92rem;color:#4a5a70}
